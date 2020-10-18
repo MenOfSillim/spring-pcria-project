@@ -1,4 +1,4 @@
-package com.spring.pcria;
+package com.pcria;
 
 public class Const {
 	public static String realPath = null;
