@@ -31,7 +31,7 @@
 	</beans:bean>
 	<!-- viewResolver로 가는 역할 -->
 	<!-- 애노테이션 붙은 애들을 스캔하는 친구 -->
-	<context:component-scan base-package="com.spring.pcria" />
+	<context:component-scan base-package="com.pcria" />
 	
 	<!-- 프로퍼티는 멤버필드에 세터로 때려박음 -->
 	<!--  커넥션 풀 제작 -->
@@ -59,7 +59,7 @@
 		<beans:property name="configLocation" value="/WEB-INF/spring/mybatis-alias.xml"/>
 	</beans:bean>
 	<!-- 라이브러리 다운 받았기 때문에, namespaces에서 다운받을 수 있음 -->
-	<mybatis-spring:scan base-package="com.spring.pcria"/>
+	<mybatis-spring:scan base-package="com.pcria"/>
 	
 	<!-- 매장 삭제 시 매장 + 메뉴 + 추천메뉴 다 같이 삭제하는 트랜잭션 -->
 	<beans:bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
