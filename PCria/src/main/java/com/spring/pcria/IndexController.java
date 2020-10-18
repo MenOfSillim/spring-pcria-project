@@ -14,6 +14,6 @@ public class IndexController {
 			System.out.println(Const.realPath);
 		}
 		System.out.println("root!!");
-		return "redirect:/pcria";
+		return "redirect:/access/login";
 	}
 }
