@@ -5,7 +5,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Login</title>
-	<link rel="stylesheet" type="text/css" href="/res/css/login.css">
+	<link rel="stylesheet" type="text/css" href="/res/css/${css}.css">
 </head>
 <body>
 	<div class="wrap">
