@@ -1,4 +1,7 @@
 @charset "UTF-8";
+#section{
+	height: 100%
+}
 #allContainer {
 	height: 100%;
 	margin: 0 auto;
@@ -40,6 +43,7 @@ button:hover {
 	margin-top: 20px;
 	display: inline-block;
 	margin-left: 50px;
+	margin-right: 0px;
 }
 #food-wrap #food-item{
 	position:relative;
@@ -70,11 +74,10 @@ button:hover {
 #order-wrap{
 	width: 320px;
     height: 550px;
-    background-color: blue;
     display: inline-block;
     margin-left: 10px;
     position: absolute;
-    bottom: 7px;
+    top: 186px;
 }
 #order-wrap #order-wrap-header{
 	padding: 18px 20px 13px 20px;
@@ -87,10 +90,74 @@ button:hover {
 #order-wrap h2:nth-child(2) {
 	float: right;
 }
+#order-wrap #order-wrap-section{
+	height: 359px;
+	border: 1px solid gray;
+	overflow: auto;
+}
+
+#order-wrap #order-wrap-section .order-wrap-section-list{
+	text-align: center;
+	margin: 15px auto;
+	border-bottom: 1px solid gray;
+	height: 30px;
+}
+.order-wrap-section-list ul li{
+	display: inline-block;
+}
+.order-wrap-section-list ul{
+	position: relative;
+}
+.order-wrap-section-list ul li:nth-child(1){
+	position: absolute;
+	left: 20px;
+}
+.order-wrap-section-list ul li:nth-child(2){
+	width: 30px;
+	left: 148px;
+	top: -4px;
+	position: absolute;
+}
+.order-wrap-section-list ul li:nth-child(2) input{
+	width: 100%;
+	text-align: center;
+}
+.order-wrap-section-list ul li:nth-child(3){
+	position: absolute;
+	right: 50px;
+}
+.order-wrap-section-list ul li:nth-child(4){
+	position: absolute;
+	right: 10px;
+	top: -5px;
+}
+.order-wrap-section-list ul li:nth-child(5){
+	position: absolute;
+	left: 126px;
+	top: -5px;
+}
+.order-wrap-section-list ul li:nth-child(6){
+	position: absolute;
+	right: 110px;
+	top: -5px;
+}
+#order-wrap #order-wrap-section2{
+	border-left: 1px solid gray;
+	border-right: 1px solid gray;
+	height: 50px;
+}
+#order-wrap #order-wrap-section2 h3{
+	line-height: 50px;
+	margin-left: 25px;
+}
 #order-wrap #order-wrap-footer{
 	position: absolute;
-	width: 100%;
+	width: 318px;
 	height: 80px;
 	background-color: yellow;
+	border: 1px solid gray;
 	bottom: 0;
+}
+span{
+	cursor: pointer;
 }
