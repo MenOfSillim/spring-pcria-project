@@ -31,11 +31,11 @@ button:hover {
 	background: #E24E2A;
 	color: #FFF;
 }
-#allContainer .button-wrap{
+#allContainer .button_wrap{
 	text-align: center;
 }
 
-#food-wrap{
+#food_wrap{
 	width: 800px;
 	height: 550px;
 	color: black;
@@ -45,33 +45,50 @@ button:hover {
 	margin-left: 50px;
 	margin-right: 0px;
 }
-#food-wrap #food-item{
+#food_wrap .food_item{
 	position:relative;
 	display: inline-block;
-	width: 170px;
-	margin: 10px;
-	border: 1px solid #383838;
+	width: 166px;
+	margin: 12px;
+	border: 1px solid lightgray;
+	font-size: 1.1em;
+	letter-spacing: 1.2px;
+	
 }
-#food-wrap #food-item ul li:not(:first-child){
-	width: 100px;
+#food_wrap .food_item ul{
+	margin-bottom: 0px;
+}
+#food_wrap .food_item ul li:not(:first-child){
+	width: 120px;
 	display: inline-block;
 	margin-left: 10px;
 	text-align: center;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space:nowrap;
 }
-#food-wrap #food-item ul li:nth-child(2){
+#food_wrap .food_item ul li:nth-child(1){
+	width: 166px;
+	height: 170px;
 	margin-bottom: 10px;
+	cursor: pointer;
 }
-#food-wrap #food-item ul li img{
+#food_wrap .food_item ul li img{
 	width: 100%;
+	height: 100%;
 }
-#food-wrap #food-item #shopping_cart{
+#food_wrap .food_item ul li:nth-child(2){
+	margin-bottom: 10px;
+	
+}
+#food_wrap .food_item #shopping_cart{
 	position: absolute;	
 	bottom: 10%;
-	right: 7%;
+	right: 5%;
 	color: gray;
 	font-size: 2em;
 }
-#order-wrap{
+#order_wrap{
 	width: 320px;
     height: 550px;
     display: inline-block;
@@ -79,78 +96,91 @@ button:hover {
     position: absolute;
     top: 186px;
 }
-#order-wrap #order-wrap-header{
+#order_wrap #order_wrap_header{
 	padding: 18px 20px 13px 20px;
-	background-color: gray;
+	background-color: lightgray;
+	border: 1px solid gray;
+	border-bottom : none;
 	color: black;
 }
-#order-wrap h2{
+#order_wrap h2{
 	display: inline-block;
 }
-#order-wrap h2:nth-child(2) {
+#order_wrap h2:nth-child(2) {
 	float: right;
+	cursor: pointer;
 }
-#order-wrap #order-wrap-section{
+#order_wrap h2:nth-child(2):hover{
+	color: black;
+}
+#order_wrap #order_wrap_section{
 	height: 359px;
 	border: 1px solid gray;
 	overflow: auto;
 }
 
-#order-wrap #order-wrap-section .order-wrap-section-list{
+#order_wrap #order_wrap_section .order_wrap_section_list{
 	text-align: center;
 	margin: 15px auto;
 	border-bottom: 1px solid gray;
 	height: 30px;
 }
-.order-wrap-section-list ul li{
+.order_wrap_section_list ul li{
 	display: inline-block;
 }
-.order-wrap-section-list ul{
+.order_wrap_section_list ul{
 	position: relative;
 }
-.order-wrap-section-list ul li:nth-child(1){
+.order_wrap_section_list ul li:nth-child(1){
 	position: absolute;
 	left: 20px;
 }
-.order-wrap-section-list ul li:nth-child(2){
+.order_wrap_section_list ul li:nth-child(2){
 	width: 30px;
 	left: 148px;
-	top: -4px;
+	top: -3px;
 	position: absolute;
 }
-.order-wrap-section-list ul li:nth-child(2) input{
+.order_wrap_section_list ul li:nth-child(2) input{
 	width: 100%;
 	text-align: center;
 }
-.order-wrap-section-list ul li:nth-child(3){
+.order_wrap_section_list ul li:nth-child(3){
 	position: absolute;
-	right: 50px;
+	right: 35px;
 }
-.order-wrap-section-list ul li:nth-child(4){
+.order_wrap_section_list ul li:nth-child(4){
 	position: absolute;
-	right: 10px;
-	top: -5px;
+	right: 7px;
+	top: -4px;
 }
-.order-wrap-section-list ul li:nth-child(5){
+.order_wrap_section_list ul li:nth-child(5){
 	position: absolute;
 	left: 126px;
-	top: -5px;
+	top: -4px;
 }
-.order-wrap-section-list ul li:nth-child(6){
+.order_wrap_section_list ul li:nth-child(6){
 	position: absolute;
 	right: 110px;
-	top: -5px;
+	top: -4px;
 }
-#order-wrap #order-wrap-section2{
+#order_wrap #order_wrap_section2{
 	border-left: 1px solid gray;
 	border-right: 1px solid gray;
 	height: 50px;
 }
-#order-wrap #order-wrap-section2 h3{
+#order_wrap #order_wrap_section2 h3:nth-child(1){
 	line-height: 50px;
 	margin-left: 25px;
+	display: inline-block;
 }
-#order-wrap #order-wrap-footer{
+#order_wrap #order_wrap_section2 h3:nth-child(2){
+	line-height: 50px;
+	margin-right: 35px;
+	display: inline-block;
+	float: right;
+}
+#order_wrap #order_wrap_footer{
 	position: absolute;
 	width: 318px;
 	height: 80px;

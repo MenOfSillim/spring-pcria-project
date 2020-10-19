@@ -7,11 +7,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pcria.Const;
+import com.pcria.access.model.AccessVO;
 import com.pcria.main.model.FoodVO;
 
 @Controller
@@ -49,11 +51,9 @@ public class MainController {
 		
 		return "/template/mainTemplate";
 	}
-	@RequestMapping(value = "/foodAjax",produces = "application/json; charset=utf8")
+	@RequestMapping(value = "/foodAjax", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public List<FoodVO> foodAjax(FoodVO param, HttpSession hs) {
-		System.out.println("foodAjax 왔음");
-		
 		return service.selFoodList(param);
 	}
 	
