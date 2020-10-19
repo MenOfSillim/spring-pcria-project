@@ -1,0 +1,60 @@
+@charset "UTF-8";
+
+#allContainer {
+	height: 100%;
+	margin: 0 auto;
+}
+#allContainer h1{
+	text-align: center;
+	margin: 50px auto;
+}
+#memberContainer{
+	text-align: center;
+}
+#memberContainer label{
+	line-height: 10px;
+}
+.lbl:nth-child(2) {
+	margin-left: 10px;
+}
+select{
+	padding: 5px;
+}
+
+#seatsContainer {
+	margin-top: 10px;
+}
+
+button {
+	margin: 3px;
+	background-color: #4B89DC;
+	color: white;
+	border: 0px;
+	border-radius: 5px;
+	width: 230px;
+	height: 100px;
+	font-size: 1.2em;
+	text-align: center;
+}
+button:hover {
+	background-color: darkgoldenrod
+}
+
+span {
+	margin-top:3px;
+	margin-right: 10px;
+	color: black;
+	font-size: 1.4em;
+}
+
+#allContainer #timeFrm #time_sub {
+	display: block;
+	width: 200px;
+	height: 80px;
+	background-color: green;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	font-size: 1.3em;
+	margin: 0 auto;
+}

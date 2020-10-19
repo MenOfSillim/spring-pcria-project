@@ -35,7 +35,7 @@ public class MainController {
 		
 		model.addAttribute(Const.MENU_ID, "usageTime");
 		model.addAttribute(Const.VIEW, "main/usageTime");
-		model.addAttribute(Const.CSS, "main/seat");
+		model.addAttribute(Const.CSS, "main/usageTime");
 		
 		return "/template/mainTemplate";
 	}
