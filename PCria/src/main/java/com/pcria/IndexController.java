@@ -1,4 +1,4 @@
-package com.spring.pcria;
+package com.pcria;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,8 +11,9 @@ public class IndexController {
 	public String index(HttpServletRequest req) {
 		if(Const.realPath == null) {
 			Const.realPath = req.getServletContext().getRealPath("");
+			System.out.println(Const.realPath);
 		}
-		System.out.println("root!!");
-		return "redirect:/rest/map";
+		System.out.println("IndexController");
+		return "redirect:/access/login";
 	}
 }
