@@ -22,7 +22,7 @@
 			<ul>
 				<li id="seat"><a href="/main/seat" accesskey="1" title="좌석 예약">좌석 예약</a></li>
 				<li id="usageTime"><a href="/main/usageTime" accesskey="2" title="시간 예약">시간 예약</a></li>
-				<li id="food"><a href="/main/food" accesskey="3" title="메뉴 예약">먹거리 주문</a></li>
+				<li id="foodOrder"><a href="/main/food" accesskey="3" title="메뉴 예약">먹거리 주문</a></li>
 				<li id="profile"><a href="/main/profile" accesskey="4" title="프로필">프로필</a></li>
 				<li id="myPage"><a href="/main/myPage" accesskey="5" title="내 정보">내 정보</a></li>
 			</ul>
@@ -39,6 +39,7 @@
 </body>
 <script type="text/javascript">
 	var menu_id = ${menu_id}
+	console.log(menu_id)
 	menu_id.classList.add('current_page_item')
 </script>
 </html>

@@ -1,15 +1,25 @@
 package com.pcria.main;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pcria.Const;
+import com.pcria.main.model.FoodVO;
 
 @Controller
 @RequestMapping("/main")
 public class MainController {
+	
+	@Autowired
+	private MainService service;
 	
 	@RequestMapping(value = "/seat", method = RequestMethod.GET)
 	public String seat(Model model) {
@@ -32,12 +42,22 @@ public class MainController {
 	@RequestMapping(value = "/food", method = RequestMethod.GET)
 	public String food(Model model) {
 		
-		model.addAttribute(Const.MENU_ID, "food");
+		model.addAttribute(Const.MENU_ID, "foodOrder");
+		model.addAttribute(Const.FOOD_MENU_ID, "total");
 		model.addAttribute(Const.VIEW, "main/food");
-		model.addAttribute(Const.CSS, "main/seat");
+		model.addAttribute(Const.CSS, "main/food");
 		
 		return "/template/mainTemplate";
 	}
+	@RequestMapping(value = "/foodAjax",produces = "application/json; charset=utf8")
+	@ResponseBody
+	public List<FoodVO> foodAjax(FoodVO param, HttpSession hs) {
+		System.out.println("foodAjax 왔음");
+		
+		return service.selFoodList(param);
+	}
+	
+	
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
 	public String profile(Model model) {
 		

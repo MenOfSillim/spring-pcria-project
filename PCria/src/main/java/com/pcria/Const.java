@@ -8,6 +8,7 @@ public class Const {
 	public static final String CSS = "css";
 	
 	public static final String MENU_ID = "menu_id";
+	public static final String FOOD_MENU_ID = "food_menu_id";
 	
 	public static final String LOGIN_USER = "loginUser";
 	public static final String CURRENT_REST_READ_IP = "currentRestReadIp_";
