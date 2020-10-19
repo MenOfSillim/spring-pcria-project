@@ -393,7 +393,6 @@ ul.contact li a.icon-rss:before
 }
 #footer-wrapper
 {
-	width:1600px;
 	margin:0 auto;
 	display:flex;
 	overflow: hidden;
@@ -611,7 +610,7 @@ ul.contact li a.icon-rss:before
 #copyright
 {
 	background-color:#1B9772;
-	width:1300px;
+	width:1600px;
 	margin: 0 auto;
 	overflow: hidden;
 	padding: 20px 0;

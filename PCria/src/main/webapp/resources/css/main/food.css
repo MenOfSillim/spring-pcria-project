@@ -1,4 +1,7 @@
 @charset "UTF-8";
+#section{
+	height: 100%
+}
 #allContainer {
 	height: 100%;
 	margin: 0 auto;
@@ -40,6 +43,7 @@ button:hover {
 	margin-top: 20px;
 	display: inline-block;
 	margin-left: 50px;
+	margin-right: 0px;
 }
 #food-wrap #food-item{
 	position:relative;
@@ -70,11 +74,10 @@ button:hover {
 #order-wrap{
 	width: 320px;
     height: 550px;
-    background-color: blue;
     display: inline-block;
     margin-left: 10px;
     position: absolute;
-    bottom: 7px;
+    top: 186px;
 }
 #order-wrap #order-wrap-header{
 	padding: 18px 20px 13px 20px;
@@ -87,10 +90,15 @@ button:hover {
 #order-wrap h2:nth-child(2) {
 	float: right;
 }
+#order-wrap #order-wrap-section{
+	height: 409px;
+	border: 1px solid gray;
+}
 #order-wrap #order-wrap-footer{
 	position: absolute;
-	width: 100%;
+	width: 318px;
 	height: 80px;
 	background-color: yellow;
+	border: 1px solid gray;
 	bottom: 0;
 }
