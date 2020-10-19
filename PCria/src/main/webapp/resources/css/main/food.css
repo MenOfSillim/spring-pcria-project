@@ -91,8 +91,64 @@ button:hover {
 	float: right;
 }
 #order-wrap #order-wrap-section{
-	height: 409px;
+	height: 359px;
 	border: 1px solid gray;
+	overflow: auto;
+}
+
+#order-wrap #order-wrap-section .order-wrap-section-list{
+	text-align: center;
+	margin: 15px auto;
+	border-bottom: 1px solid gray;
+	height: 30px;
+}
+.order-wrap-section-list ul li{
+	display: inline-block;
+}
+.order-wrap-section-list ul{
+	position: relative;
+}
+.order-wrap-section-list ul li:nth-child(1){
+	position: absolute;
+	left: 20px;
+}
+.order-wrap-section-list ul li:nth-child(2){
+	width: 30px;
+	left: 148px;
+	top: -4px;
+	position: absolute;
+}
+.order-wrap-section-list ul li:nth-child(2) input{
+	width: 100%;
+	text-align: center;
+}
+.order-wrap-section-list ul li:nth-child(3){
+	position: absolute;
+	right: 50px;
+}
+.order-wrap-section-list ul li:nth-child(4){
+	position: absolute;
+	right: 10px;
+	top: -5px;
+}
+.order-wrap-section-list ul li:nth-child(5){
+	position: absolute;
+	left: 126px;
+	top: -5px;
+}
+.order-wrap-section-list ul li:nth-child(6){
+	position: absolute;
+	right: 110px;
+	top: -5px;
+}
+#order-wrap #order-wrap-section2{
+	border-left: 1px solid gray;
+	border-right: 1px solid gray;
+	height: 50px;
+}
+#order-wrap #order-wrap-section2 h3{
+	line-height: 50px;
+	margin-left: 25px;
 }
 #order-wrap #order-wrap-footer{
 	position: absolute;
@@ -101,4 +157,7 @@ button:hover {
 	background-color: yellow;
 	border: 1px solid gray;
 	bottom: 0;
+}
+span{
+	cursor: pointer;
 }
