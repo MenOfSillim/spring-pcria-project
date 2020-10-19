@@ -1,6 +1,6 @@
 /target/
 *.properties
-*.MANIFEST.MF
+MANIFEST.MF
 
 # OS Files #
 .DS_Store
