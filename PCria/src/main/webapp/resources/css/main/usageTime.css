@@ -46,15 +46,3 @@ span {
 	color: black;
 	font-size: 1.4em;
 }
-
-#allContainer #timeFrm #time_sub {
-	display: block;
-	width: 200px;
-	height: 80px;
-	background-color: green;
-	color: white;
-	border: none;
-	border-radius: 5px;
-	font-size: 1.3em;
-	margin: 0 auto;
-}
