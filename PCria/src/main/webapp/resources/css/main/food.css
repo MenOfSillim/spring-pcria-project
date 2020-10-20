@@ -205,6 +205,7 @@ button:hover {
     color: #6c6c6c;
     padding: 5px;
     border-radius: 5px;
+    padding-left: 10px;
     
 }
 #order_wrap #order_wrap_footer #order_wrap_footer_container #countingBtn{
