@@ -25,7 +25,7 @@
 	        	<div id="idChkResult" class="msg"></div>
 	        	<div>
 		            <input type="text" class="input-field" name="u_id" id="u_id" placeholder="아이디를 입력하세요" required onkeyup="changeId()">
-		            <button type="button" onclick="chkId(u_id)">아이디 중복 체크</button>
+		            <button type="button" onclick="chkId(u_id)">중복 확인</button>
 	        		<input type="hidden" id="chk_value" name="chk_value">
 	            </div>
 	            <input type="password" class="input-field" name="u_password" placeholder="비밀번호를 입력하세요" required>
@@ -100,7 +100,7 @@
 
         function register(){
             x.style.left = "-400px";
-            y.style.left = "50px";
+            y.style.left = "43px";
             z.style.left = "110px";
         }
         // 회원 가입 부분 - 끝
