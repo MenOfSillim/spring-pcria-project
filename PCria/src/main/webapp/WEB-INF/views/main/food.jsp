@@ -31,8 +31,8 @@
     	<div id="order_wrap_footer">
     		<div id="order_wrap_footer_container">
     			<h4>요청 사항</h4>
-    			<input type="search">
-    			<button id="countingBtn">결제</button>
+    			<input type="search" id="btnFoodRequest" placeholder="요청사항을 입력해주세요." value="">
+    			<button id="countingBtn" onclick="extractCntList()">결제</button>
     		</div>
     	</div>
     </div>
@@ -53,14 +53,71 @@
 	appendPayment(totalPayment)
 	
 	// 최종적 계산 목록 -> ajaxPost로 보낼 객체
-	var countList = []
-	function countingVO(seq, total_quantity, total_price) {
+	var countingList = []
+	function CountingVO(seq, i_f, f_name, total_quantity, total_price) {
 		this.seq = seq;
+		this.i_f = i_f;
+		this.f_name = f_name;
 		this.total_quantity = total_quantity;
 		this.total_price = total_price;
 	}
-	
-	//현제 버튼 체크된 클래스의 id값 가져옴->id값 뒤의 seq 추출
+	//계산 과정 시 최종적으로 메뉴별 계산목록 추출 함수
+	function extractCntList() {
+		let childCount = order_wrap_section.childElementCount
+		if(childCount >= 1){
+			if(confirm('주문하시겠습니까?')){
+				//주문 목록 배열 길이 가져오기
+				for (let i = 0; i < childCount; i++) {
+					let childNodes_id = order_wrap_section.childNodes[i].id
+					//1. seq값 추출
+					let seq = childNodes_id.substring(4)
+					//2. i_f값 추출
+					let i_f = order_wrap_section.childNodes[i].childNodes[1].value	
+					//ul 가져오기
+					let childNodes_ul = order_wrap_section.childNodes[i].getElementsByTagName('ul')[0]
+					//3. total_quantity값 추출
+					let total_quantity = document.getElementById('quantity_'+seq).value
+					//4. total_price값 추출
+					let li_price = childNodes_ul.childNodes[2]
+					let total_price = removeComma(li_price.innerText.slice(0,-1))
+					//5. f_name값 추출
+					let li_f_name = childNodes_ul.childNodes[0]
+					let f_name = li_f_name.innerText
+					
+					//객체 생성 및 배열에 넣어주기
+					var countingDMI = new CountingVO(seq, i_f, f_name, total_quantity, total_price)
+					countingList.push(countingDMI)
+				}
+				//6. food_request값 추출
+				let food_request = btnFoodRequest.value
+				if(food_request == ''){food_request = '없음'}
+				
+				ajaxCntFood(totalPayment, countingList, food_request)
+			}
+		}else{
+			alert('메뉴를 선택해주세요.')
+		}
+	}
+	function ajaxCntFood(totalPayment, countingList, food_request) {
+		axios.post('/main/foodAjax',{
+			totalPayment : totalPayment,
+			countingList : countingList,
+			food_request : food_request
+		}).then(function(res) {
+			if(res.data == 1){
+				console.log(`ajaxPost result : \${res.data}`)
+				//계산 후 초기화
+				countingList.length = 0;
+				order_wrap_section.innerHTML = ''
+				btnFoodRequest.value = ''
+				appendPayment(0)
+				//location.reload()
+			}else{
+				alert('계산 실패했습니다.')
+			}
+		})
+	}
+	//현재 버튼 체크된 클래스의 id값 가져옴->id값 뒤의 seq 추출
 	function parsingChk(chk_id){
 		var origin_class = document.querySelector('.food_page_item')
 		var origin_id = document.getElementById(origin_class.id)
@@ -70,7 +127,7 @@
 		var chk = chk_id.substring(4)
 		ajaxSelMenuList(chk)
 	}
-	
+	//계산금액 갱신해주는 함수
 	function appendPayment(totalPayment) {
 		payment.innerText = numberWithCommas(totalPayment)+'원'
 	}
@@ -95,6 +152,11 @@
 			
 			var ul = document.createElement('ul')
 			food_item.append(ul)
+			
+			var hidden_i_f = document.createElement('input')
+			hidden_i_f.type = 'hidden'
+			hidden_i_f.value = arrMenu[i].i_f
+			food_item.append(hidden_i_f)
 			
 			var liF_pic = document.createElement('li')
 			liF_pic.title = arrMenu[i].f_name
@@ -121,11 +183,12 @@
 			let f_price = arrMenu[i].f_price
 			let f_name = arrMenu[i].f_name
 			let seq = arrMenu[i].seq
-			spanCart.addEventListener('click', event => addFoodList(f_pic, f_price, f_name, seq));
+			let i_f = arrMenu[i].i_f
+			spanCart.addEventListener('click', event => addFoodList(f_pic, f_price, f_name, seq, i_f));
 			food_item.append(spanCart)
 		}
 	}
-	function addFoodList(f_pic, f_price, f_name, seq) {
+	function addFoodList(f_pic, f_price, f_name, seq, i_f) {
 		let childCount = order_wrap_section.childElementCount
 		let chk = true;
 		
@@ -149,8 +212,13 @@
 			div_seq.classList.add('order_wrap_section_list')
 			order_wrap_section.append(div_seq)
 			
-			var addUl =document.createElement('ul')
+			var addUl = document.createElement('ul')
 			div_seq.append(addUl)
+			
+			var hidden_i_f = document.createElement('input')
+			hidden_i_f.type = 'hidden'
+			hidden_i_f.value = i_f
+			div_seq.append(hidden_i_f) 
 			
 			var li_title = document.createElement('li')
 			li_title.innerText = f_name
