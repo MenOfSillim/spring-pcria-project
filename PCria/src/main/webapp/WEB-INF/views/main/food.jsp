@@ -29,24 +29,38 @@
     		<h3 id="payment"></h3>
     	</div>
     	<div id="order_wrap_footer">
-    		<div>
+    		<div id="order_wrap_footer_container">
     			<h4>요청 사항</h4>
     			<input type="search">
+    			<button id="countingBtn">결제</button>
     		</div>
     	</div>
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-	var totalPayment = 0;
+	//초기 버튼 '전체' 색깔 주려고 클래스 추가
 	var menu_id = ${food_menu_id}
-	var menuChk = 8;
 	menu_id.classList.add('food_page_item')
+
 	
 	//ajax 기본적으로 전체 메뉴 들고오기
+	var menuChk = 8;
 	ajaxSelMenuList(menuChk)
+	
+	//최종 계산 금액 -> 여기에 합산하는 방식
+	var totalPayment = 0;
 	appendPayment(totalPayment)
 	
+	// 최종적 계산 목록 -> ajaxPost로 보낼 객체
+	var countList = []
+	function countingVO(seq, total_quantity, total_price) {
+		this.seq = seq;
+		this.total_quantity = total_quantity;
+		this.total_price = total_price;
+	}
+	
+	//현제 버튼 체크된 클래스의 id값 가져옴->id값 뒤의 seq 추출
 	function parsingChk(chk_id){
 		var origin_class = document.querySelector('.food_page_item')
 		var origin_id = document.getElementById(origin_class.id)
@@ -60,17 +74,17 @@
 	function appendPayment(totalPayment) {
 		payment.innerText = numberWithCommas(totalPayment)+'원'
 	}
-	
+	//ajax통신으로 foodList 출력하는 용도
 	function ajaxSelMenuList(chk) {
-			axios.get('/main/foodAjax', {
-				params : {
-					chk : chk
-				}
-			}).then(function(res) {
-				//ajax로 식품 목록 넣어주는 기능
-				food_wrap.innerHTML = ''
-				selMenuList(res.data)
-			})
+		axios.get('/main/foodAjax', {
+			params : {
+				chk : chk
+			}
+		}).then(function(res) {
+			//ajax로 식품 목록 넣어주는 기능
+			food_wrap.innerHTML = ''
+			selMenuList(res.data)
+		})
 	}
 	function selMenuList(arrMenu) {
 		for (var i = 0; i < arrMenu.length; i++) {

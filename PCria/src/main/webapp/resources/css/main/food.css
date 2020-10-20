@@ -189,6 +189,31 @@ button:hover {
 	border: 1px solid gray;
 	bottom: 0;
 }
+#order_wrap #order_wrap_footer #order_wrap_footer_container{
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+#order_wrap #order_wrap_footer #order_wrap_footer_container h4{
+	display: inline-block;
+    margin: 10px 70px;
+}
+#order_wrap #order_wrap_footer #order_wrap_footer_container input{
+	margin-left: 15px;
+	outline: none;
+    border: 1px solid gray;
+    color: #6c6c6c;
+    padding: 5px;
+    border-radius: 5px;
+    
+}
+#order_wrap #order_wrap_footer #order_wrap_footer_container #countingBtn{
+	position: absolute;
+    bottom: 6px;
+    right: 10px;
+    width: 100px;
+    height: 62px;
+}
 span{
 	cursor: pointer;
 }
