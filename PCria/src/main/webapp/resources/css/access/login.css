@@ -17,7 +17,7 @@
     width: 380px;
     height: 560px;
     position: relative;
-    margin: 14% auto;
+    margin: 180px auto;
     background: #fff;
     padding: 5px;
     overflow: hidden;
@@ -56,15 +56,42 @@
     cursor: pointer;
 }
 .input-group {
-    top: 180px;
+    top: 100px;
     position: absolute;
     width: 280px;
     transition: .5s;
 }
+#login .input-field:nth-child(2){
+	margin-top: 70px;
+}
+#login .input-field:nth-child(3){
+	margin-top: 40px;
+}
+#login .submit{
+	margin-top: 40px;
+	padding: 20px 30px;
+}
+#register .input-field:nth-child(1){
+	width: 70%;
+}
+#register div button{
+	padding: 10px;
+	border: 1px solid lightgray;
+    background-color: lightgray;
+    border-radius: 10px;
+    cursor: pointer;
+}
+#register div button:hover{
+	border: 1px solid gray;
+	background-color: gray;
+}
+#register .submit{
+	padding: 20px 30px;
+}
 .input-field {
     width: 100%;
     padding: 10px 0;
-    margin: 5px 0;
+    margin: 20px 0;
     border: none;
     border-bottom: 1px solid #999;
     outline: none;
@@ -94,7 +121,9 @@
     left: 50px;
 }
 #register {
-    left: 450px;
+    left: 420px;
+    height: 460px;
+    width: 300px;
 }
 #register #registerBtn	{
 	margin:50px auto; 
