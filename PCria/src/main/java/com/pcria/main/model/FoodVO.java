@@ -6,7 +6,14 @@ public class FoodVO {
 	private int f_price;
 	private String f_pic;
 	private String f_name;
+	private int chk;
 	
+	public int getChk() {
+		return chk;
+	}
+	public void setChk(int chk) {
+		this.chk = chk;
+	}
 	public int getSeq() {
 		return seq;
 	}

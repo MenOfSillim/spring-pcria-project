@@ -39,7 +39,6 @@
 </body>
 <script type="text/javascript">
 	var menu_id = ${menu_id}
-	console.log(menu_id)
 	menu_id.classList.add('current_page_item')
 </script>
 </html>
