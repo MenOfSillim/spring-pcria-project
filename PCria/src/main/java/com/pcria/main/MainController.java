@@ -8,13 +8,16 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pcria.Const;
 import com.pcria.access.AccessService;
 import com.pcria.access.model.AccessVO;
+import com.pcria.main.model.CountingDMI;
 import com.pcria.main.model.FoodVO;
 
 @Controller
@@ -50,16 +53,29 @@ public class MainController {
 	public String food(Model model) {
 		
 		model.addAttribute(Const.MENU_ID, "foodOrder");
-		model.addAttribute(Const.FOOD_MENU_ID, "total");
+		model.addAttribute(Const.FOOD_MENU_ID, "chk_8");
 		model.addAttribute(Const.VIEW, "main/food");
 		model.addAttribute(Const.CSS, "main/food");
 		
 		return "/template/mainTemplate";
 	}
-	@RequestMapping(value = "/foodAjax", produces = "application/json; charset=utf8")
-	@ResponseBody
-	public List<FoodVO> foodAjax(FoodVO param, HttpSession hs) {
+	@RequestMapping(value = "/foodAjax", method = RequestMethod.GET, produces = "application/json; charset=utf8")
+	public @ResponseBody List<FoodVO> foodAjax(FoodVO param, HttpSession hs) {
 		return service.selFoodList(param);
+	}
+	@RequestMapping(value = "/foodAjax", method = RequestMethod.POST)
+	public @ResponseBody int foodAjax(@RequestBody CountingDMI param) {
+		System.out.println("총 계산 금액 : "+param.getTotalPayment());
+		System.out.println("요청 사항 : "+param.getFood_request());
+		for (int j = 0; j < param.getCountingList().size(); j++) {
+			System.out.print("seq : "+param.getCountingList().get(j).getSeq()+",");
+			System.out.print("i_f : "+param.getCountingList().get(j).getI_f()+",");
+			System.out.print("f_name : "+param.getCountingList().get(j).getF_name()+",");
+			System.out.print("total_quantity : "+param.getCountingList().get(j).getTotal_quantity()+",");
+			System.out.print("total_price : "+param.getCountingList().get(j).getTotal_price());
+			System.out.println();
+		}
+		return 1;
 	}
 	
 	

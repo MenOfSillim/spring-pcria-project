@@ -4,5 +4,8 @@
 	<select id="selFoodList" parameterType="FoodVO" resultType="FoodVO">
 		SELECT seq, i_f, f_price, f_pic, f_name
 		FROM t_food
+		<if test="chk != 8">
+		WHERE i_f = #{chk}
+		</if>
 	</select>
 </mapper>
