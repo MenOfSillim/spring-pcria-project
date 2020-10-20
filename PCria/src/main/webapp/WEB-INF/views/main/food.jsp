@@ -7,14 +7,14 @@
 <div id="allContainer">
 	<h1>PCria 먹거리 주문</h1>
 	<div class="button_wrap">
-        <button id="total" onclick="login()">전체</button>
-        <button id="popular" onclick="register()">인기상품</button>
-        <button id="ramen" onclick="register()">라면</button>
-        <button id="snackBar" onclick="register()">분식</button>
-        <button id="food" onclick="register()">식품</button>
-        <button id="beverage" onclick="register()">음료</button>
-        <button id="snack" onclick="register()">과자</button>
-        <button id="etc" onclick="register()">기타</button>
+        <button id="chk_8" onclick="parsingChk(this.id)">전체</button>
+        <button id="chk_7" onclick="parsingChk(this.id)">인기상품</button>
+        <button id="chk_1" onclick="parsingChk(this.id)">라면</button>
+        <button id="chk_2" onclick="parsingChk(this.id)">분식</button>
+        <button id="chk_3" onclick="parsingChk(this.id)">식품</button>
+        <button id="chk_4" onclick="parsingChk(this.id)">음료</button>
+        <button id="chk_5" onclick="parsingChk(this.id)">과자</button>
+        <button id="chk_6" onclick="parsingChk(this.id)">기타</button>
     </div>
     <!-- ajax로 food_wrap에 값 삽입됨 -->
     <div id="food_wrap"></div>
@@ -35,12 +35,22 @@
 <script>
 	var totalPayment = 0;
 	var menu_id = ${food_menu_id}
-	var menuChk = 1;
+	var menuChk = 8;
 	menu_id.classList.add('food_page_item')
 	
 	//ajax 기본적으로 전체 메뉴 들고오기
 	ajaxSelMenuList(menuChk)
 	appendPayment(totalPayment)
+	
+	function parsingChk(chk_id){
+		var origin_class = document.querySelector('.food_page_item')
+		var origin_id = document.getElementById(origin_class.id)
+		origin_id.classList.remove('food_page_item')
+		var current_id = document.getElementById(chk_id) 
+		current_id.classList.add('food_page_item')
+		var chk = chk_id.substring(4)
+		ajaxSelMenuList(chk)
+	}
 	
 	function appendPayment(totalPayment) {
 		payment.innerText = numberWithCommas(totalPayment)+'원'
@@ -53,6 +63,7 @@
 				}
 			}).then(function(res) {
 				//ajax로 식품 목록 넣어주는 기능
+				food_wrap.innerHTML = ''
 				selMenuList(res.data)
 			})
 	}
@@ -71,7 +82,7 @@
 			ul.append(liF_pic)
 			
 			var imgF_pic = document.createElement('img')
-			imgF_pic.src = arrMenu[i].f_pic
+			imgF_pic.src = arrMenu[i].f_pic.trim()
 			liF_pic.append(imgF_pic)
 			
 			var liF_name = document.createElement('li')
@@ -170,14 +181,17 @@
 			appendPayment(totalPayment)
 		}
 	}
-	
+	//전체 삭제
 	function deleteAllFoodList() {
-		var foodList = document.querySelectorAll('.order_wrap_section_list')
-		for (var i = 0; i < foodList.length; i++) {
-			foodList[i].remove()
+		if(totalPayment > 0){
+			if(confirm('전체 삭제하시겠습니까?')){
+				order_wrap_section.innerHTML = ''
+				totalPayment = 0
+				appendPayment(totalPayment)
+			}
+		}else{
+			alert('추가한 목록이 없습니다.')
 		}
-		totalPayment = 0
-		appendPayment(totalPayment)
 	}
 	
 	function deleteFoodList(orderList, li_price) {

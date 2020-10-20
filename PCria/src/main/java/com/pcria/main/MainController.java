@@ -45,15 +45,14 @@ public class MainController {
 	public String food(Model model) {
 		
 		model.addAttribute(Const.MENU_ID, "foodOrder");
-		model.addAttribute(Const.FOOD_MENU_ID, "total");
+		model.addAttribute(Const.FOOD_MENU_ID, "chk_8");
 		model.addAttribute(Const.VIEW, "main/food");
 		model.addAttribute(Const.CSS, "main/food");
 		
 		return "/template/mainTemplate";
 	}
 	@RequestMapping(value = "/foodAjax", produces = "application/json; charset=utf8")
-	@ResponseBody
-	public List<FoodVO> foodAjax(FoodVO param, HttpSession hs) {
+	public @ResponseBody List<FoodVO> foodAjax(FoodVO param, HttpSession hs) {
 		return service.selFoodList(param);
 	}
 	
