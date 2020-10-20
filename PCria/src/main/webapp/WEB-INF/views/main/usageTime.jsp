@@ -3,20 +3,33 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<link rel="stylesheet" type="text/css" href="/res/css/main/modal.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 <div id="allContainer">
 	<h1>PCria 사용 시간 예약</h1>
 	<div id="user_info">
-		<p>${user.u_id}님 반갑습니다.</p>
-		<p>잔여 시간 ${user.u_time} 남았습니다.</p>
-		<p>현재 잔액 ${user.u_wallet}원 남았습니다.</p>
+		<p>${data.u_name}님 반갑습니다.</p>
+		<p>잔여 시간 ${data.u_time} 남았습니다.</p>
+		<p>현재 잔액 ${data.u_wallet}원 남았습니다.</p>
 	</div>
 	<div id="sel_div"></div>
 	<form id="timeFrm" action="" method="get" onsubmit="return chk()">
-		<input type="hidden" name="hour" value="0">
-		<input type="hidden" name="price" value="0">	
-		<input type="submit" value="결제하기" id="time_sub">	
+		<input type="hidden" name="hour" value="0" readonly="readonly">
+		<input type="hidden" name="price" value="0" readonly="readonly">	
+		<div id="open">결제하기</div>
+	    <div class="modal hidden">
+	       <div class="modal__overlay"></div>
+	       <div class="modal__content">
+	        <div id="modal_btn"><span class="material-icons">clear</span></div>
+	 		<div id="sel_time">
+	 			<span id="sel__time"></span>
+	 			<span id="sel__price"></span>
+	 		</div>
+	 		<input type="submit" value="결제하기" id="time_sub">
+	       </div>
+	    </div>  
 	</form>
-	
 </div>
 <script>
 	function make_btn() {
@@ -49,7 +62,23 @@
 		console.log("price : " + price)
 		timeFrm.hour.value = hour
 		timeFrm.price.value = price
+		
+		sel__time.innerText = hour + ':00 시간'
+		sel__price.innerText = numberFormat(price) + '원'
 	}
+	
+	const openButton = document.getElementById("open")
+    const modal = document.querySelector(".modal")
+    const overlay = modal.querySelector(".modal__overlay")
+    const closeBtn = modal.querySelector("#modal_btn")
+    const openModal = () => {
+        modal.classList.remove("hidden")
+    }
+    const closeModal = () => {
+        modal.classList.add("hidden")
+    }
+    closeBtn.addEventListener("click", closeModal)
+    openButton.addEventListener("click", openModal)
 	
 	function chk() {
 		if(timeFrm.hour.value == 0 && timeFrm.price.value ==0) {

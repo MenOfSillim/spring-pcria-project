@@ -1,5 +1,7 @@
 package com.pcria.access;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +22,12 @@ public class AccessController {
 	@Autowired
 	private AccessService service;
 	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpSession hs) {
+		hs.invalidate();
+		return "redirect:/";
+	}
+	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Model model, @RequestParam(defaultValue="0") int err) {
 		model.addAttribute(Const.CSS, "access/login");
@@ -29,6 +37,25 @@ public class AccessController {
 		}
 		
 		return "/access/login";
+	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String login (AccessVO param, HttpSession hs, RedirectAttributes ra) {
+		int result = service.login(param);
+		
+		if(result == Const.SUCCESS) {
+			hs.setAttribute(Const.LOGIN_USER, param);
+			return "redirect:/main/seat";
+		}
+		String msg = null;
+		if(result == Const.NO_ID) {
+			msg = "아이디를 확인해 주세요";
+		} else if(result == Const.NO_PW) {
+			msg = "비밀번호를 확인해 주세요";
+		}
+		ra.addFlashAttribute("data", param); // 세션에 담겼다가 응답 후 지워진다.
+		ra.addFlashAttribute("msg", msg);
+		return "redirect:/access/login";
 	}
 	
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
