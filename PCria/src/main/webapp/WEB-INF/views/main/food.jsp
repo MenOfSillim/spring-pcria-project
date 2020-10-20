@@ -28,7 +28,12 @@
     		<h3>주문 금액 합계</h3>
     		<h3 id="payment"></h3>
     	</div>
-    	<div id="order_wrap_footer"></div>
+    	<div id="order_wrap_footer">
+    		<div>
+    			<h4>요청 사항</h4>
+    			<input type="search">
+    		</div>
+    	</div>
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
