@@ -11,12 +11,13 @@
 	<div id="user_info">
 		<p>${data.u_name}님 반갑습니다.</p>
 		<p>잔여 시간 ${data.u_time} 남았습니다.</p>
-		<p>현재 잔액 ${data.u_wallet}원 남았습니다.</p>
+		<p id="current_price"></p>
+	   	<div class="msg">${msg}</div>
 	</div>
 	<div id="sel_div"></div>
-	<form id="timeFrm" action="" method="get" onsubmit="return chk()">
-		<input type="hidden" name="hour" value="0" readonly="readonly">
-		<input type="hidden" name="price" value="0" readonly="readonly">	
+	<form id="timeFrm" action="/count/time" method="post" onsubmit="return chk()">
+		<input type="hidden" name="u_time" value="0" readonly="readonly">
+		<input type="hidden" name="u_wallet" value="0" readonly="readonly">	
 		<div id="open">결제하기</div>
 	    <div class="modal hidden">
 	       <div class="modal__overlay"></div>
@@ -32,6 +33,12 @@
 	</form>
 </div>
 <script>
+	function curr_price() {
+		current_price.innerText = '현재 잔액 '+ numberFormat(${data.u_wallet}) + '원 남았습니다.'
+	}
+	
+	curr_price()
+
 	function make_btn() {
 		var selArr =[1, 2, 3, 5, 10, 20]
 		var selDiv = document.createElement('div')
@@ -60,8 +67,8 @@
 		
 		console.log("hour : " + hour)
 		console.log("price : " + price)
-		timeFrm.hour.value = hour
-		timeFrm.price.value = price
+		timeFrm.u_time.value = hour * 10000
+		timeFrm.u_wallet.value = price
 		
 		sel__time.innerText = hour + ':00 시간'
 		sel__price.innerText = numberFormat(price) + '원'
@@ -81,7 +88,7 @@
     openButton.addEventListener("click", openModal)
 	
 	function chk() {
-		if(timeFrm.hour.value == 0 && timeFrm.price.value ==0) {
+		if(timeFrm.u_time.value == 0 && timeFrm.u_wallet.value ==0) {
 			alert('시간을 선택해 주세요.')
 			return false
 		}
