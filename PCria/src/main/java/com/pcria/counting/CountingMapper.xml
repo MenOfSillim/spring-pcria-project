@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pcria.counting.CountingMapper">
+	<update id="updTime" parameterType="CountingVO">
+		UPDATE t_user 
+		SET u_wallet = u_wallet - #{u_wallet}, u_time = u_time + #{u_time} 
+		WHERE u_no = #{u_no}
+	</update>
+</mapper>
