@@ -8,4 +8,11 @@
 		WHERE i_f = #{chk}
 		</if>
 	</select>
+	
+	<select id="selSeat" resultType="SeatVO">
+		SELECT A.s_no, A.s_val, B.u_no, B.s_occupied
+		FROM s_code_d A
+		LEFT JOIN s_seat B
+		ON A.s_no = B.s_no;
+	</select>
 </mapper>
