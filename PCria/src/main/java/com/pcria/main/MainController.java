@@ -52,8 +52,7 @@ public class MainController {
 		return "/template/mainTemplate";
 	}
 	@RequestMapping(value = "/foodAjax", produces = "application/json; charset=utf8")
-	@ResponseBody
-	public List<FoodVO> foodAjax(FoodVO param, HttpSession hs) {
+	public @ResponseBody List<FoodVO> foodAjax(FoodVO param, HttpSession hs) {
 		return service.selFoodList(param);
 	}
 	
