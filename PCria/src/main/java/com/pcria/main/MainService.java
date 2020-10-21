@@ -14,9 +14,11 @@ public class MainService {
 	private MainMapper mapper;
 	
 	public List<FoodVO> selFoodList(FoodVO param){
-		List<FoodVO> list = mapper.selFoodList(param);
-		for (int i = 0; i < list.size(); i++) {
-			System.out.println(list.get(i).getF_name());
+		List<FoodVO> list = null;
+		if(param.getChk() >= 1 && param.getChk() <= 6) {
+			list = mapper.selFoodList(param);
+		}else {
+			list = mapper.selFoodList(param);
 		}
 		return list;
 	}

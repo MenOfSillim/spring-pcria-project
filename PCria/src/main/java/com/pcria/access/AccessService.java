@@ -1,5 +1,7 @@
 package com.pcria.access;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,5 +48,14 @@ public class AccessService {
 		param.setU_password(cryptPw);
 		
 		return mapper.insUser(param);
+	}
+	
+	public AccessVO userInfo(AccessVO param, HttpServletRequest req) {
+		int u_no = SecurityUtils.getLoginUserPk(req);
+		param.setU_no(u_no);
+		
+		AccessVO data = mapper.selUser(param);
+		
+		return data;
 	}
 }
