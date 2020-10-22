@@ -15,4 +15,10 @@
 		LEFT JOIN s_seat B
 		ON A.s_no = B.s_no;
 	</select>
+	
+	<update id="updFood" parameterType="CountingDMI">
+		UPDATE t_user 
+		SET u_wallet = u_wallet - #{totalPayment}
+		WHERE u_no = #{u_no}
+	</update>
 </mapper>

@@ -4,11 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<!-- /main 컨트롤러 -->
  		<typeAlias type="com.pcria.main.model.FoodVO" alias="FoodVO"/>
  		<typeAlias type="com.pcria.main.model.SeatVO" alias="SeatVO"/>
+ 		<typeAlias type="com.pcria.main.model.CountingDMI" alias="CountingDMI"/>
  		
- 		<!-- /access 컨트롤러 -->
  		<typeAlias type="com.pcria.access.model.AccessVO" alias="AccessVO"/>
  		
  		<typeAlias type="com.pcria.counting.model.CountingVO" alias="CountingVO"/>

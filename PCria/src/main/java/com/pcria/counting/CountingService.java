@@ -14,4 +14,8 @@ public class CountingService {
 	public int updTime(CountingVO param) {
 		return mapper.updTime(param);
 	}
+	
+	public int updWallet(CountingVO param) {
+		return mapper.updWallet(param);
+	}
 }

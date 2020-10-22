@@ -6,4 +6,10 @@
 		SET u_wallet = u_wallet - #{u_wallet}, u_time = u_time + #{u_time} 
 		WHERE u_no = #{u_no}
 	</update>
+	
+	<update id="updWallet" parameterType="CountingVO">
+		UPDATE t_user
+		SET u_wallet = u_wallet + #{u_wallet}
+		WHERE u_no = #{u_no}
+	</update>
 </mapper>
