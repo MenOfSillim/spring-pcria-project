@@ -11,6 +11,7 @@ public class AccessVO {
 	private int hu_no;
 	private String salt;
 	
+	
 	public String getSalt() {
 		return salt;
 	}

@@ -11,5 +11,6 @@
  		
  		<!-- /access 컨트롤러 -->
  		<typeAlias type="com.pcria.access.model.AccessVO" alias="AccessVO"/>
+ 		<typeAlias type="com.pcria.access.model.AccessDMI" alias="AccessDMI"/>
 	</typeAliases>
 </configuration>

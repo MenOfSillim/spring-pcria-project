@@ -22,4 +22,19 @@
 		VALUES
 		(#{u_no}, #{s_no}, #{s_occupied})	
 	</insert>
+	
+	<update id="updSeat" parameterType="SeatDMI">
+		UPDATE t_seat
+		SET s_no = #{s_no}
+		WHERE u_no = #{u_no}
+		AND s_occupied = #{s_occupied} 
+	</update>
+	
+	<delete id="delSeat" parameterType="AccessDMI">
+		DELETE FROM t_seat
+		WHERE
+		u_no = #{u_no} AND
+		s_no = #{s_no} AND
+		s_occupied = #{s_occupied}
+	</delete>
 </mapper>

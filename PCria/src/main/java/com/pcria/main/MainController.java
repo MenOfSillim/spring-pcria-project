@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.pcria.Const;
 import com.pcria.SecurityUtils;
 import com.pcria.access.AccessService;
+import com.pcria.access.model.AccessDMI;
 import com.pcria.access.model.AccessVO;
 import com.pcria.main.model.CountingDMI;
 import com.pcria.main.model.FoodVO;
 import com.pcria.main.model.SeatDMI;
-import com.pcria.main.model.SeatVO;
 
 @Controller
 @RequestMapping("/main")
@@ -102,12 +102,20 @@ public class MainController {
 		System.out.println("s_occupied : "+param.getS_occupied());
 		System.out.println("myUpdInsChk : "+param.getMyUpdInsChk());
 		param.setU_no(SecurityUtils.getLoginUserPk(hs));
+		//로그인 세션에 넣기 
+		AccessDMI loginUser = (AccessDMI) hs.getAttribute(Const.LOGIN_USER);
+		loginUser.setS_occupied(param.getMyS_occupied());
+		loginUser.setS_no(param.getS_no());
 		if(param.getMyUpdInsChk() == 1) {
-			return 3;
-		}else {
-			//신규 선택 유저 값 초기화용
-			service.insSeat(param);
+			loginUser.setMyUpdInsChk(1);
+			service.updSeat(param);
 			return 2;
+		}else if(param.getMyUpdInsChk() == 0){
+			service.insSeat(param);
+			loginUser.setMyUpdInsChk(1);
+			return 1;
+		}else {
+			return 3;
 		}
 	}
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)

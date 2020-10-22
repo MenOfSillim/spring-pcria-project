@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.pcria.access.model.AccessDMI;
 import com.pcria.main.model.FoodVO;
 import com.pcria.main.model.SeatDMI;
 import com.pcria.main.model.SeatVO;
@@ -30,5 +31,11 @@ public class MainService {
 	}
 	public int insSeat(SeatDMI param) {
 		return mapper.insSeat(param);
+	}
+	public int updSeat(SeatDMI param) {
+		return mapper.updSeat(param);
+	}
+	public int delSeat(AccessDMI param) {
+		return mapper.delSeat(param);
 	}
 }

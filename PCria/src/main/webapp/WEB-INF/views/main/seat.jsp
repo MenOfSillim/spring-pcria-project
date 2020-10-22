@@ -36,8 +36,12 @@
 			myUpdInsChk = 1
 			console.log(`myUpdInsChk 후 : \${myUpdInsChk}`)
 			
-			if(res.data >= 1){
-				alert('좌석 선택 완료되었습니다.')
+			if(res.data == 1){
+				alert('좌석 이동이 완료되었습니다.')
+			}else if(res.data == 2){
+				alert('좌석 등록이 완료되었습니다.')
+			}else{
+				alert('실패했습니다.')
 			}
 		})
 	}

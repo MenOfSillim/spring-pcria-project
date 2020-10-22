@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.pcria.Const;
+import com.pcria.SecurityUtils;
+import com.pcria.access.model.AccessDMI;
 import com.pcria.access.model.AccessVO;
+import com.pcria.main.MainService;
 
 @Controller
 @RequestMapping("/access")
@@ -22,8 +25,16 @@ public class AccessController {
 	@Autowired
 	private AccessService service;
 	
+	@Autowired
+	private MainService main_service;
+	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession hs) {
+		AccessDMI param = new AccessDMI();
+		param.setS_no(SecurityUtils.getLoginUser(hs).getU_no());
+		param.setU_no(SecurityUtils.getLoginUserPk(hs));
+		param.setS_occupied(SecurityUtils.getLoginUser(hs).getS_occupied());
+		main_service.delSeat(param);
 		hs.invalidate();
 		return "redirect:/";
 	}
