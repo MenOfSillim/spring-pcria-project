@@ -12,7 +12,14 @@
 	<select id="selSeat" resultType="SeatVO">
 		SELECT A.s_no, A.s_val, B.u_no, B.s_occupied
 		FROM s_code_d A
-		LEFT JOIN s_seat B
-		ON A.s_no = B.s_no;
+		LEFT JOIN t_seat B
+		ON A.s_no = B.s_no
+		ORDER BY A.s_no ASC
 	</select>
+	
+	<insert id="insSeat" parameterType="SeatDMI">
+		INSERT INTO t_seat (u_no, s_no, s_occupied)
+		VALUES
+		(#{u_no}, #{s_no}, #{s_occupied})	
+	</insert>
 </mapper>
