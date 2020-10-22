@@ -10,7 +10,7 @@
 	<h1>PCria 사용 시간 예약</h1>
 	<div id="user_info">
 		<p>${data.u_name}님 반갑습니다.</p>
-		<p id="current_time">잔여 시간 ${data.u_time} 남았습니다.</p>
+		<p id="current_time">잔여 시간 <span id="span_time">${data.u_time}</span> 남았습니다.</p>
 		<p id="current_price"></p>
 		<div id="div_coin">
 			<input type="text" name="coin" id="coin">원
@@ -35,6 +35,9 @@
 	       </div>
 	    </div>  
 	</form>
+	<button onclick="start()">시작</button>
+    <h1>Sample01 : 내일까지</h1> 
+    <h2 id="sample01"></h2> <br/> 
 </div>	
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
@@ -115,4 +118,55 @@
 		}
 		alert('선택이 완료되었습니다.')
 	}
+    const countDownTimer = function (id, date) { 
+        var _vDate = new Date(date); // 전달 받은 일자 
+        var _second = 1000; 
+        var _minute = _second * 60; 
+        var _hour = _minute * 60; 
+        var _day = _hour * 24; 
+        var timer; 
+
+        function showRemaining() { 
+            var now = new Date(); 
+            var distDt = _vDate - now; 
+        
+            if (distDt < 0) { 
+                clearInterval(timer); 
+                document.getElementById(id).textContent = '해당 이벤트가 종료 되었습니다!'; 
+                return; 
+        
+            } 
+            var days = Math.floor(distDt / _day); 
+            var hours = Math.floor((distDt % _day) / _hour); 
+            var minutes = Math.floor((distDt % _hour) / _minute); 
+            var seconds = Math.floor((distDt % _minute) / _second); 
+
+            //document.getElementById(id).textContent = date.toLocaleString() + "까지 : "; 
+            document.getElementById(id).textContent = days + '일 '; 
+            document.getElementById(id).textContent += hours + '시간 '; 
+            document.getElementById(id).textContent += minutes + '분 '; 
+            document.getElementById(id).textContent += seconds + '초'; 
+            }
+
+        timer = setInterval(showRemaining, 1000); 
+
+    } 
+
+    
+    function start() {
+        var dateObj = new Date(); 
+    	var time = span_time.innerText
+    	var real_time = 0
+    	console.log(time)
+    	if(time != '00:00:00') {
+            var timeArr = time.split(':')
+            console.log(parseInt(timeArr[0]))
+            real_time = parseInt(timeArr[0] * 3600) + parseInt(timeArr[1] * 60) + parseInt(timeArr[0])
+            console.log(real_time)
+    	} else {
+    		real_time = 0
+    	}
+        dateObj.setTime(dateObj.getTime() + real_time * 1000); 
+        countDownTimer('sample01', dateObj); // 내일까지 
+    }
 </script>
