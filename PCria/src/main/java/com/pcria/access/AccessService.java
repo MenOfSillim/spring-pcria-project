@@ -55,7 +55,7 @@ public class AccessService {
 		param.setU_no(u_no);
 		
 		AccessVO data = mapper.selUser(param);
-		
+		data.setU_password(null);
 		return data;
 	}
 }

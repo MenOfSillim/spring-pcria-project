@@ -98,7 +98,7 @@
 		}
 	}
 	function ajaxCntFood(totalPayment, countingList, food_request) {
-		axios.post('/main/foodAjax',{
+		axios.post('/count/foodAjax',{
 			totalPayment : totalPayment,
 			countingList : countingList,
 			food_request : food_request

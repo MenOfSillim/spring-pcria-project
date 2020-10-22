@@ -10,7 +10,7 @@
 	<h1>PCria 사용 시간 예약</h1>
 	<div id="user_info">
 		<p>${data.u_name}님 반갑습니다.</p>
-		<p>잔여 시간 ${data.u_time} 남았습니다.</p>
+		<p id="current_time">잔여 시간 ${data.u_time} 남았습니다.</p>
 		<p id="current_price"></p>
 		<div id="div_coin">
 			<input type="text" name="coin" id="coin">원
