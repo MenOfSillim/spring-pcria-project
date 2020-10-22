@@ -1,6 +1,8 @@
-package com.pcria.main.model;
+package com.pcria.counting.model;
 
 import java.util.List;
+
+import com.pcria.main.model.FoodVO;
 
 public class CountingDMI extends FoodVO {
 	private int totalPayment;

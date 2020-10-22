@@ -6,10 +6,10 @@
 	<typeAliases>
  		<typeAlias type="com.pcria.main.model.FoodVO" alias="FoodVO"/>
  		<typeAlias type="com.pcria.main.model.SeatVO" alias="SeatVO"/>
- 		<typeAlias type="com.pcria.main.model.CountingDMI" alias="CountingDMI"/>
  		
  		<typeAlias type="com.pcria.access.model.AccessVO" alias="AccessVO"/>
  		
  		<typeAlias type="com.pcria.counting.model.CountingVO" alias="CountingVO"/>
+ 		<typeAlias type="com.pcria.counting.model.CountingDMI" alias="CountingDMI"/>
 	</typeAliases>
 </configuration>
