@@ -8,7 +8,16 @@ public class CountingDMI extends FoodVO {
 	private int total_quantity;
 	private int total_price;
 	private String food_request;
+	private int u_no;
 	
+	public int getU_no() {
+		return u_no;
+	}
+
+	public void setU_no(int u_no) {
+		this.u_no = u_no;
+	}
+
 	public List<CountingDMI> getCountingList() {
 		return countingList;
 	}

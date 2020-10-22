@@ -113,7 +113,7 @@
 				appendPayment(0)
 				//location.reload()
 			}else{
-				alert('계산 실패했습니다.')
+				alert('잔액이 부족합니다.')
 			}
 		})
 	}

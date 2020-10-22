@@ -12,6 +12,10 @@
 		<p>${data.u_name}님 반갑습니다.</p>
 		<p>잔여 시간 ${data.u_time} 남았습니다.</p>
 		<p id="current_price"></p>
+		<div id="div_coin">
+			<input type="text" name="coin" id="coin">원
+			<button onclick="insert_coin()" id="coin_btn">충전하기</button>
+		</div> 
 	   	<div class="msg">${msg}</div>
 	</div>
 	<div id="sel_div"></div>
@@ -31,13 +35,30 @@
 	       </div>
 	    </div>  
 	</form>
-</div>
+</div>	
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-	function curr_price() {
-		current_price.innerText = '현재 잔액 '+ numberFormat(${data.u_wallet}) + '원 남았습니다.'
+	function curr_price(coin) {
+		current_price.innerText = '현재 잔액 '+ numberFormat(coin) + '원 남았습니다.'
 	}
 	
-	curr_price()
+	curr_price(${data.u_wallet})
+	
+	function insert_coin() {
+		var coin = document.getElementById('coin').value
+		console.log('coin : ' + coin)
+		if(confirm('충전하시겠습니까?')) {
+			axios.post('/count/coinAjax', {
+				u_wallet : coin
+			}).then(function(res) {
+				console.log(res)
+				console.log(res.data)
+				document.querySelector('#coin').value = 0
+				current_price.innerText = ''
+				curr_price(res.data.u_wallet)
+			})
+		}
+	}
 
 	function make_btn() {
 		var selArr =[1, 2, 3, 5, 10, 20]
