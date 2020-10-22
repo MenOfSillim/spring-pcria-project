@@ -13,6 +13,28 @@
 		SELECT A.s_no, A.s_val, B.u_no, B.s_occupied
 		FROM s_code_d A
 		LEFT JOIN t_seat B
-		ON A.s_no = B.s_no;
+		ON A.s_no = B.s_no
+		ORDER BY A.s_no ASC
 	</select>
+	
+	<insert id="insSeat" parameterType="SeatDMI">
+		INSERT INTO t_seat (u_no, s_no, s_occupied)
+		VALUES
+		(#{u_no}, #{s_no}, #{s_occupied})	
+	</insert>
+	
+	<update id="updSeat" parameterType="SeatDMI">
+		UPDATE t_seat
+		SET s_no = #{s_no}
+		WHERE u_no = #{u_no}
+		AND s_occupied = #{s_occupied} 
+	</update>
+	
+	<delete id="delSeat" parameterType="AccessDMI">
+		DELETE FROM t_seat
+		WHERE
+		u_no = #{u_no} AND
+		s_no = #{s_no} AND
+		s_occupied = #{s_occupied}
+	</delete>
 </mapper>
