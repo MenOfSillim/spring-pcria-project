@@ -27,8 +27,8 @@
     //좌석 선택 완료 버튼 클릭 시 좌석 업데이트
     function ajaxUpdSeat(s_no, s_occupied, chk) {
     	axios.post('/main/ajaxUpdSeat',{
-			s_no : s_no,
-			s_occupied : s_occupied,
+    		s_no : s_no,
+    		s_occupied : s_occupied,
 			myUpdInsChk : chk
 		}).then(function(res) {
 			console.log(`res.data : \${res.data}`)

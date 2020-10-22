@@ -14,7 +14,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.pcria.Const;
 import com.pcria.SecurityUtils;
-import com.pcria.access.model.AccessDMI;
 import com.pcria.access.model.AccessVO;
 import com.pcria.main.MainService;
 
@@ -30,10 +29,13 @@ public class AccessController {
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession hs) {
-		AccessDMI param = new AccessDMI();
-		param.setS_no(SecurityUtils.getLoginUser(hs).getU_no());
+		AccessVO param = new AccessVO();
+		param.setS_no(SecurityUtils.getLoginUser(hs).getS_no());
+		System.out.println(param.getS_no());
 		param.setU_no(SecurityUtils.getLoginUserPk(hs));
+		System.out.println(param.getU_no());
 		param.setS_occupied(SecurityUtils.getLoginUser(hs).getS_occupied());
+		System.out.println(param.getS_occupied());
 		main_service.delSeat(param);
 		hs.invalidate();
 		return "redirect:/";
@@ -55,6 +57,13 @@ public class AccessController {
 		int result = service.login(param);
 		
 		if(result == Const.SUCCESS) {
+			AccessVO vo = main_service.selLoginUserSeat(param.getU_no());
+			if(vo != null) {
+				param.setS_no(vo.getS_no());
+				System.out.println("좌석 : "+vo.getS_no());
+				param.setS_occupied(vo.getS_occupied());
+				System.out.println("좌석 사용 여부 : "+vo.getS_occupied());
+			}
 			hs.setAttribute(Const.LOGIN_USER, param);
 			return "redirect:/main/seat";
 		}

@@ -5,7 +5,6 @@ import javax.servlet.http.HttpSession;
 
 import org.mindrot.jbcrypt.BCrypt;
 
-import com.pcria.access.model.AccessDMI;
 import com.pcria.access.model.AccessVO;
 
 public class SecurityUtils {
@@ -23,8 +22,8 @@ public class SecurityUtils {
 		HttpSession hs = request.getSession();
 		return (AccessVO)hs.getAttribute(Const.LOGIN_USER);
 	}
-	public static AccessDMI getLoginUser(HttpSession hs) {
-		return (AccessDMI) hs.getAttribute(Const.LOGIN_USER);
+	public static AccessVO getLoginUser(HttpSession hs) {
+		return (AccessVO) hs.getAttribute(Const.LOGIN_USER);
 	}
 	
 	public static boolean isLogout(HttpServletRequest request) {

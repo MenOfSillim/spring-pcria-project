@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.pcria.Const;
 import com.pcria.SecurityUtils;
 import com.pcria.access.AccessService;
-import com.pcria.access.model.AccessDMI;
 import com.pcria.access.model.AccessVO;
 import com.pcria.main.model.CountingDMI;
 import com.pcria.main.model.FoodVO;
@@ -96,15 +95,10 @@ public class MainController {
 	}
 	@RequestMapping(value = "/ajaxUpdSeat", method = RequestMethod.POST)
 	public @ResponseBody int ajaxUpdSeat(@RequestBody SeatDMI param, HttpSession hs) {
-		System.out.println("ajaxUpdSeat 왔음");
-		System.out.println("s_no(선택 좌석) : "+param.getS_no());
-		System.out.println("로그인 유저 정보 : "+SecurityUtils.getLoginUserPk(hs));
-		System.out.println("s_occupied : "+param.getS_occupied());
-		System.out.println("myUpdInsChk : "+param.getMyUpdInsChk());
 		param.setU_no(SecurityUtils.getLoginUserPk(hs));
 		//로그인 세션에 넣기 
-		AccessDMI loginUser = (AccessDMI) hs.getAttribute(Const.LOGIN_USER);
-		loginUser.setS_occupied(param.getMyS_occupied());
+		AccessVO loginUser = SecurityUtils.getLoginUser(hs);
+		loginUser.setS_occupied(param.getS_occupied());
 		loginUser.setS_no(param.getS_no());
 		if(param.getMyUpdInsChk() == 1) {
 			loginUser.setMyUpdInsChk(1);

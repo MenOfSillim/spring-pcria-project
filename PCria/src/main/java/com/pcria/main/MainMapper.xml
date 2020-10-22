@@ -30,11 +30,17 @@
 		AND s_occupied = #{s_occupied} 
 	</update>
 	
-	<delete id="delSeat" parameterType="AccessDMI">
+	<delete id="delSeat" parameterType="AccessVO">
 		DELETE FROM t_seat
 		WHERE
 		u_no = #{u_no} AND
 		s_no = #{s_no} AND
 		s_occupied = #{s_occupied}
 	</delete>
+	
+	<select id="selLoginUserSeat" resultType="AccessVO">
+		SELECT u_no, s_no, s_occupied
+		FROM t_seat
+		WHERE u_no = #{u_no}
+	</select>
 </mapper>
