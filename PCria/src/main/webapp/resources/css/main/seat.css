@@ -6,7 +6,7 @@
 }
 #allContainer h1{
 	text-align: center;
-	margin: 50px auto;
+	margin: 22px auto;
 }
 #memberContainer{
 	text-align: center;
@@ -24,25 +24,65 @@ select{
 #seatsContainer {
 	margin-top: 10px;
 }
-
-button {
+button{
 	margin: 3px;
-	background-color: #4B89DC;
 	color: white;
-	border: 0px;
 	border-radius: 5px;
-	width: 90px;
-	height: 60px;
+	width: 130px;
+	height: 65px;
 	font-size: 1.2em;
 	text-align: center;
+	border: 0;
+	outline : 0;
+	cursor: pointer;
 }
 button:hover {
 	background-color: darkgoldenrod
 }
-
+.btnEmptySeats {
+	background-color: #4B89DC;
+	position: relative;
+}
+.btnSelSeats{
+	background-color: #DB4455;
+	position: relative;
+}
+.btnSelSeats div:nth-child(1){
+	position: absolute;
+	top: 5px;
+	left: 55px;
+}  
+.btnEmptySeats div:nth-child(1){
+	position: absolute;
+	top: 5px;
+	left: 55px;
+}  
+.btnSelSeats div:nth-child(2){
+	position: absolute;
+	bottom: 5px;
+	left: 40px;
+}  
+.btnEmptySeats div:nth-child(2){
+	position: absolute;
+	bottom: 5px;
+	left: 30px;
+}  
 span {
 	margin-top:3px;
 	margin-right: 10px;
 	color: black;
 	font-size: 1.4em;
+}
+#btnContainer{
+	text-align: center;
+	margin: 20px auto;
+}
+#btnContainer #btnSelSeat{
+	background-color : #383838;
+	color: white;
+    width: 140px;
+    height: 62px;
+}
+#btnContainer #btnSelSeat:hover{
+	background-color: darkgoldenrod
 }
