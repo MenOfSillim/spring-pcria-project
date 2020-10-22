@@ -43,7 +43,6 @@
 	var menu_id = ${food_menu_id}
 	menu_id.classList.add('food_page_item')
 
-	
 	//ajax 기본적으로 전체 메뉴 들고오기
 	var menuChk = 8;
 	ajaxSelMenuList(menuChk)

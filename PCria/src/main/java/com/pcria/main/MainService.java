@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.pcria.main.model.CountingDMI;
 import com.pcria.main.model.FoodVO;
+import com.pcria.main.model.SeatVO;
 
 @Service
 public class MainService {
@@ -22,6 +23,10 @@ public class MainService {
 			list = mapper.selFoodList(param);
 		}
 		return list;
+	}
+	
+	public List<SeatVO> selSeat(){
+		return mapper.selSeat();
 	}
 	
 	public int updFood(CountingDMI param) {

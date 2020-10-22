@@ -18,9 +18,9 @@ import com.pcria.Const;
 import com.pcria.SecurityUtils;
 import com.pcria.access.AccessService;
 import com.pcria.access.model.AccessVO;
-import com.pcria.counting.model.CountingVO;
 import com.pcria.main.model.CountingDMI;
 import com.pcria.main.model.FoodVO;
+import com.pcria.main.model.SeatVO;
 
 @Controller
 @RequestMapping("/main")
@@ -92,6 +92,11 @@ public class MainController {
 		int result = service.updFood(param);
 		
 		return result;
+	}
+	
+	@RequestMapping(value = "/ajaxSelSeat", method = RequestMethod.GET, produces = "application/json; charset=utf8")
+	public @ResponseBody List<SeatVO> ajaxSelSeat() {
+		return service.selSeat();
 	}
 	
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)

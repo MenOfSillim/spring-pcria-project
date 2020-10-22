@@ -10,10 +10,7 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		String uri = request.getRequestURI();
-		System.out.println("uri : " + uri);
 		String[] uriArr = uri.split("/");
-		
-		System.out.println("uriArr.length : " + uriArr.length);
 		
 		if(uri.equals("/")) {
 			return true;
@@ -21,7 +18,6 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter {
 			return true;			
 		}
 		
-		System.out.println("인터셉터");
 		boolean isLogout = SecurityUtils.isLogout(request);
 		
 		switch(uriArr[1]) {
