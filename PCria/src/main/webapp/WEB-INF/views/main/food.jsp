@@ -315,7 +315,4 @@
 		n = parseInt(str.replace(/,/g,""));
 		return n;
 	}
-
-
-
 </script>

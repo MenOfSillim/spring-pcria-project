@@ -7,7 +7,7 @@
 		WHERE <if test="u_no > 0">u_no = #{u_no}</if>
 		<if test="u_id != null and u_id !=''">u_id = #{u_id}</if>
 	</select>
-
+	
 	<insert id="insUser" parameterType="AccessVO">
 		INSERT INTO t_user
 		(u_id, u_password, u_name, u_birth, salt)

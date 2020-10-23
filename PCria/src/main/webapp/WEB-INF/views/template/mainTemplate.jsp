@@ -24,7 +24,7 @@
 				<li id="usageTime"><a href="/main/usageTime" accesskey="2" title="시간 예약">시간 예약</a></li>
 				<li id="foodOrder"><a href="/main/food" accesskey="3" title="메뉴 예약">먹거리 주문</a></li>
 				<li id="profile"><a href="/main/profile" accesskey="4" title="프로필">프로필</a></li>
-				<li id="myPage"><a href="javascript:logout()" >로그아웃</a></li>
+				<li id="myPage"><a href="javascript:logout()" >사용종료</a></li>
 			</ul>
 		</div>
 	</div>

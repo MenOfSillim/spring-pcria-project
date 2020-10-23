@@ -20,7 +20,7 @@ import com.pcria.access.AccessService;
 import com.pcria.access.model.AccessVO;
 import com.pcria.counting.model.CountingDMI;
 import com.pcria.main.model.FoodVO;
-import com.pcria.main.model.SeatVO;
+import com.pcria.main.model.SeatDMI;
 
 @Controller
 @RequestMapping("/main")
@@ -67,8 +67,38 @@ public class MainController {
 	}
 	
 	@RequestMapping(value = "/ajaxSelSeat", method = RequestMethod.GET, produces = "application/json; charset=utf8")
-	public @ResponseBody List<SeatVO> ajaxSelSeat() {
-		return service.selSeat();
+	public @ResponseBody SeatDMI ajaxSelSeat(HttpSession hs) {
+		SeatDMI seatDMI = new SeatDMI();
+		int u_no = SecurityUtils.getLoginUserPk(hs);
+		seatDMI.setAjaxSelSeat(service.selSeat());
+		//내가 예약한 좌석값 가져오기
+		for (int i = 0; i < seatDMI.getAjaxSelSeat().size(); i++) {
+			if(seatDMI.getAjaxSelSeat().get(i).getU_no() == u_no) {
+				seatDMI.setMyS_no(seatDMI.getAjaxSelSeat().get(i).getS_no());
+				seatDMI.setMyS_occupied(seatDMI.getAjaxSelSeat().get(i).getS_occupied());
+				seatDMI.setMyS_val(seatDMI.getAjaxSelSeat().get(i).getS_val());
+			}
+		}
+		return seatDMI;
+	}
+	@RequestMapping(value = "/ajaxUpdSeat", method = RequestMethod.POST)
+	public @ResponseBody int ajaxUpdSeat(@RequestBody SeatDMI param, HttpSession hs) {
+		param.setU_no(SecurityUtils.getLoginUserPk(hs));
+		//로그인 세션에 넣기 
+		AccessVO loginUser = SecurityUtils.getLoginUser(hs);
+		loginUser.setS_occupied(param.getS_occupied());
+		loginUser.setS_no(param.getS_no());
+		if(param.getMyUpdInsChk() == 1) {
+			loginUser.setMyUpdInsChk(1);
+			service.updSeat(param);
+			return 2;
+		}else if(param.getMyUpdInsChk() == 0){
+			service.insSeat(param);
+			loginUser.setMyUpdInsChk(1);
+			return 1;
+		}else {
+			return 3;
+		}
 	}
 	
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)

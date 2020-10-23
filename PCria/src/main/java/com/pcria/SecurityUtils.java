@@ -22,6 +22,9 @@ public class SecurityUtils {
 		HttpSession hs = request.getSession();
 		return (AccessVO)hs.getAttribute(Const.LOGIN_USER);
 	}
+	public static AccessVO getLoginUser(HttpSession hs) {
+		return (AccessVO) hs.getAttribute(Const.LOGIN_USER);
+	}
 	
 	public static boolean isLogout(HttpServletRequest request) {
 		return getLoginUser(request) == null;
