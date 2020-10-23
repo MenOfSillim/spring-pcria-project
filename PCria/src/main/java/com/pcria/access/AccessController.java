@@ -90,10 +90,10 @@ public class AccessController {
 	}
 	
 	@RequestMapping(value="/ajaxIdChk", method = RequestMethod.POST)
-	@ResponseBody // 이것을 통해 jsp파일을 찾지 않게 된다
-	public String ajaxIdChk(@RequestBody AccessVO param) {
+	public @ResponseBody String ajaxIdChk(@RequestBody AccessVO param) {
 		System.out.println("u_id : " + param.getU_id());
 		int result = service.login(param);
+		System.out.println("result : " + result);
 		return String.valueOf(result); // 값 자체를 응답
 	}
 }

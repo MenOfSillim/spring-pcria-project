@@ -10,6 +10,7 @@ import com.pcria.main.model.SeatVO;
 
 @Mapper
 public interface MainMapper {
+	
 	List<FoodVO> selFoodList(FoodVO param);
 	
 	//좌석 관련

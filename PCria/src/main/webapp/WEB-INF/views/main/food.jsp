@@ -98,7 +98,7 @@
 		}
 	}
 	function ajaxCntFood(totalPayment, countingList, food_request) {
-		axios.post('/main/foodAjax',{
+		axios.post('/count/foodAjax',{
 			totalPayment : totalPayment,
 			countingList : countingList,
 			food_request : food_request
@@ -112,7 +112,7 @@
 				appendPayment(0)
 				//location.reload()
 			}else{
-				alert('계산 실패했습니다.')
+				alert('잔액이 부족합니다.')
 			}
 		})
 	}
@@ -315,7 +315,4 @@
 		n = parseInt(str.replace(/,/g,""));
 		return n;
 	}
-
-
-
 </script>
