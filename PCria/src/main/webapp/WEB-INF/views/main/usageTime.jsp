@@ -167,6 +167,6 @@
     		real_time = 0
     	}
         dateObj.setTime(dateObj.getTime() + real_time * 1000); 
-        countDownTimer('sample01', dateObj); // 내일까지 
+        countDownTimer('sample01', dateObj); // 남은 시간부터 카운트다운
     }
 </script>
