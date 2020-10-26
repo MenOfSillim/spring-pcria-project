@@ -25,6 +25,11 @@ public class CountingService {
 		return mapper.updTime(param);
 	}
 	
+	// 시간 차감
+	public int discTime(CountingVO param) {
+		return mapper.discTime(param);
+	}
+	
 	// 잔액 충전
 	public int updWallet(CountingVO param) {
 		return mapper.updWallet(param);

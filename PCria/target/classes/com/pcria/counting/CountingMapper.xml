@@ -12,6 +12,12 @@
 		SET u_wallet = u_wallet - #{u_wallet}, u_time = u_time + #{u_time} 
 		WHERE u_no = #{u_no}
 	</update>
+
+	<update id="discTime" parameterType="CountingVO">
+		UPDATE t_user 
+		SET u_time = u_time - #{u_time} 
+		WHERE u_no = #{u_no}
+	</update>
 	
 	<update id="updWallet" parameterType="CountingVO">
 		UPDATE t_user
@@ -25,14 +31,14 @@
 		WHERE u_no = #{u_no}
 	</update>
 	
-	<insert id="newFood" parameterType="CountingDMI">
-		INSERT INTO user_food (u_no, seq, total_quantity)
-		VALUES (#{u_no}, #{seq}, #{total_quantity}) 
-	</insert>
-	
 	<update id="addFood" parameterType="CountingDMI">
 		UPDATE user_food
 		SET total_quantity = total_quantity + #{total_quantity}
 		WHERE u_no = #{u_no} AND seq = #{seq}
 	</update>
+	
+	<insert id="newFood" parameterType="CountingDMI">
+		INSERT INTO user_food (u_no, seq, total_quantity)
+		VALUES (#{u_no}, #{seq}, #{total_quantity}) 
+	</insert>
 </mapper>
