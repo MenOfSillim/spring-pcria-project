@@ -25,9 +25,9 @@
 		WHERE u_no = #{u_no}
 	</update>
 	
-	<update id="updFood" parameterType="CountingDMI">
+	<update id="payFood" parameterType="CountingDMI">
 		UPDATE t_user 
-		SET u_wallet = u_wallet - #{totalPayment}
+		SET u_time = u_time - #{payTime}
 		WHERE u_no = #{u_no}
 	</update>
 	

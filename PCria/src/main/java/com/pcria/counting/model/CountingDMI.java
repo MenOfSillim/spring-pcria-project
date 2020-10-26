@@ -11,7 +11,16 @@ public class CountingDMI extends FoodVO {
 	private int total_price;
 	private String food_request;
 	private int u_no;
+	private String payTime;
 	
+	public String getPayTime() {
+		return payTime;
+	}
+
+	public void setPayTime(String payTime) {
+		this.payTime = payTime;
+	}
+
 	public int getU_no() {
 		return u_no;
 	}
