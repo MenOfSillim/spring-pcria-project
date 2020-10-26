@@ -36,6 +36,7 @@ public class AccessService {
 		param.setU_wallet(dbUser.getU_wallet());
 		param.setU_birth(dbUser.getU_birth());
 		param.setU_time(dbUser.getU_time());
+		param.setU_profile(dbUser.getU_profile());
 		return Const.SUCCESS;
 	}
 	

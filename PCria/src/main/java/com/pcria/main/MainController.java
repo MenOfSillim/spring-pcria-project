@@ -113,9 +113,11 @@ public class MainController {
 		return "/template/mainTemplate";
 	}
 	@RequestMapping(value = "/profile", method = RequestMethod.POST)
-	public String profile(MultipartHttpServletRequest mreq, AccessVO param ,HttpSession hs) {
+	public String profile(MultipartHttpServletRequest mreq, AccessVO param ,HttpSession hs, RedirectAttributes ra) {
 		System.out.println(param.getU_name());
-		service.updProfile(mreq, param, hs);
+		int result = service.updProfile(mreq, param, hs);
+		System.out.println("result : "+result);
+		ra.addFlashAttribute("result", result);
 		return "redirect:/main/profile";
 
 	}

@@ -18,4 +18,7 @@ public class Const {
 	public static final int NO_ID = 2;
 	public static final int NO_PW = 3;
 	
+	//결과 확인용
+	public static final String RESULT = "result";
+	
 }
