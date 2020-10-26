@@ -36,8 +36,8 @@ public class CountingService {
 	}
 
 	// 음식 구매
-	public int updFood(CountingDMI param) {
-		int result = mapper.updFood(param);
+	public int payFood(CountingDMI param) {
+		int result = mapper.payFood(param);
 		return result;
 	}
 	
