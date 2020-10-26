@@ -43,9 +43,52 @@
 	
 	function logout() {
 		if(confirm('로그아웃 하시겠습니까?')) {
+			sessionStorage.removeItem('timeset')
+			sessionStorage.removeItem('count')
+			sessionStorage.clear()
+			if(sessionStorage.getItem('timeset') != null) {
+				alert('다시 시도해주세요.')
+				return false
+			}
 			location.href = '/access/logout'
 		}
 		return false
 	}
+
+	
+    // 세션에 시간 흐르게 하는 함수 - 시작
+    function session() {
+    	if(sessionStorage.getItem('timeset') != null) {
+            sessionStorage.setItem('timeset', sessionStorage.getItem('timeset') - 1000);
+            sessionStorage.setItem('count', sessionStorage.getItem('count') - 1);
+	    	console.log('session time : ' + sessionStorage.getItem('timeset'))
+	    	console.log('session count : ' + sessionStorage.getItem('count'))
+	    	disc_time()
+    	}
+    }
+    var timerId = null
+    
+    function Start_timer() {
+    	session()
+	    timerId = setInterval(session, 1000)
+    }
+    Start_timer()
+    // 여기까지 함수 - 끝
+     
+    function disc_time() {
+    	if(sessionStorage.getItem('count') % 60 == 0) {
+    		console.log(sessionStorage.getItem('count'))
+    		axios.post('/count/ajaxDiscTime', {
+    			u_time: 100
+    		}).then(function(res) {
+    			console.log(res.data)
+    			var time = document.getElementById('span_time')
+    			if(time != null) {
+    				time.innerText = ''
+    				time.innerText = res.data    				
+    			}
+    		})
+    	}
+    }
 </script>
 </html>

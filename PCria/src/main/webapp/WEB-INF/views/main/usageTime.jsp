@@ -125,11 +125,15 @@
         var _hour = _minute * 60; 
         var _day = _hour * 24; 
         var timer; 
+        var i = 0;
 
         function showRemaining() { 
             var now = new Date(); 
-            var distDt = _vDate - now; 
-        
+            var distDt = _vDate - now;
+            if(sessionStorage.getItem('timeset') == null) {
+	            sessionStorage.setItem('timeset', distDt); // 세션에 초기 시간 삽입
+	            sessionStorage.setItem('count', i); // 세션에 초기 시간 삽입            	
+            }
             if (distDt < 0) { 
                 clearInterval(timer); 
                 document.getElementById(id).textContent = '해당 이벤트가 종료 되었습니다!'; 
@@ -149,10 +153,7 @@
             }
 
         timer = setInterval(showRemaining, 1000); 
-
     } 
-
-    
     function start() {
         var dateObj = new Date(); 
     	var time = span_time.innerText

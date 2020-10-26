@@ -104,8 +104,11 @@
             z.style.left = "110px";
         }
         // 회원 가입 부분 - 끝
+
         
-        // 로그인 부분 - 시작
+		sessionStorage.removeItem('timeset')
+		sessionStorage.removeItem('count')
+		sessionStorage.clear()
     </script>
 </body>
 </html>

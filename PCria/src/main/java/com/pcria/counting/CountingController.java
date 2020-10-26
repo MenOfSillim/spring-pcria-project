@@ -28,11 +28,11 @@ public class CountingController {
 	private AccessService accService;
 	
 	@RequestMapping(value = "/time", method = RequestMethod.POST)
-	public String time(CountingVO param, HttpServletRequest req, RedirectAttributes ra) {
-		param.setU_no(SecurityUtils.getLoginUserPk(req));
+	public String time(CountingVO param, HttpSession hs, RedirectAttributes ra) {
+		param.setU_no(SecurityUtils.getLoginUserPk(hs));
 		
 		AccessVO vo = new AccessVO();
-		vo = accService.userInfo(param, req);
+		vo = accService.userInfo(param, hs);
 		
 		if(vo.getU_wallet() < param.getU_wallet()) {
 			String msg = "";
@@ -44,27 +44,49 @@ public class CountingController {
 		int result = couService.updTime(param);
 		return "redirect:/main/usageTime";
 	}
+	
+	@RequestMapping(value = "/ajaxDiscTime", method = RequestMethod.POST)
+	public @ResponseBody String discTimeAjax(@RequestBody CountingVO param, HttpSession hs) {
+		AccessVO loginUser = accService.userInfo(param, hs);
+		param.setU_no(loginUser.getU_no());
+		
+		System.out.println("시간 차감 : " + loginUser.getU_time());
+		String time = loginUser.getU_time();
+		String timeArr[] = time.split(":");
+		time = timeArr[0] + timeArr[1] + timeArr[2];
+		System.out.println("After time : " + time);
+		int curr_time = Integer.parseInt(time);
+		System.out.println("current time : " + curr_time);
+		if(curr_time % 10000 == 0) {
+			param.setU_time("4100");
+		} else {
+			param.setU_time("100");
+		}
+		int result = couService.discTime(param);
+		return loginUser.getU_time();
+	}
+	
 	@RequestMapping(value = "/coinAjax", method = RequestMethod.POST)
-	public @ResponseBody AccessVO coinAjax(@RequestBody CountingVO param, HttpServletRequest req) {
+	public @ResponseBody AccessVO coinAjax(@RequestBody CountingVO param, HttpSession hs) {
 		System.out.println("요청 금액 : " + param.getU_wallet());
-		int u_no = SecurityUtils.getLoginUserPk(req);
+		int u_no = SecurityUtils.getLoginUserPk(hs);
 		param.setU_no(u_no);
 		int result = couService.updWallet(param);
 		System.out.println("결과 : " + result);
 		AccessVO vo = new AccessVO();
-		vo = accService.userInfo(param, req);
+		vo = accService.userInfo(param, hs);
 		return vo;
 	}
 	
 	@RequestMapping(value = "/foodAjax", method = RequestMethod.POST)
-	public @ResponseBody int foodAjax(@RequestBody CountingDMI param, HttpServletRequest req, RedirectAttributes ra) {
+	public @ResponseBody int foodAjax(@RequestBody CountingDMI param, HttpSession hs, RedirectAttributes ra) {
 		System.out.println("총 계산 금액 : "+param.getTotalPayment());
 		System.out.println("요청 사항 : "+param.getFood_request());
 		
-		int u_no = SecurityUtils.getLoginUserPk(req);
+		int u_no = SecurityUtils.getLoginUserPk(hs);
 		AccessVO vo = new AccessVO();
 		vo.setU_no(u_no);
-		vo = accService.userInfo(vo, req);
+		vo = accService.userInfo(vo, hs);
 		
 		for (int j = 0; j < param.getCountingList().size(); j++) {
 			param.getCountingList().get(j).setU_no(u_no);

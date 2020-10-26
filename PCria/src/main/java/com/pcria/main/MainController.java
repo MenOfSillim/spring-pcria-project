@@ -42,9 +42,9 @@ public class MainController {
 		return "/template/mainTemplate";
 	}
 	@RequestMapping(value = "/usageTime", method = RequestMethod.GET)
-	public String usageTime(Model model, HttpServletRequest req, AccessVO param) {
+	public String usageTime(Model model, HttpSession hs, AccessVO param) {
 		
-		model.addAttribute("data", accService.userInfo(param, req));
+		model.addAttribute("data", accService.userInfo(param, hs));
 		model.addAttribute(Const.MENU_ID, "usageTime");
 		model.addAttribute(Const.VIEW, "main/usageTime");
 		model.addAttribute(Const.CSS, "main/usageTime");

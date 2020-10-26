@@ -10,6 +10,7 @@ public interface CountingMapper {
 	CountingDMI selFood(CountingDMI param);
 	
 	int updTime(CountingVO param);
+	int discTime(CountingVO param);
 	int updWallet(CountingVO param);
 	int updFood(CountingDMI param);
 	
