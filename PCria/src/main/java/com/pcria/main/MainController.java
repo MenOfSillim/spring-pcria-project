@@ -35,8 +35,9 @@ public class MainController {
 	private AccessService accService;
 	
 	@RequestMapping(value = "/seat", method = RequestMethod.GET)
-	public String seat(Model model) {
+	public String seat(Model model, HttpSession hs, AccessVO param) {
 		
+		model.addAttribute("data", accService.userInfo(param, hs));
 		model.addAttribute(Const.MENU_ID, "seat");
 		model.addAttribute(Const.VIEW, "main/seat");
 		model.addAttribute(Const.CSS, "main/seat");
@@ -93,11 +94,11 @@ public class MainController {
 		if(param.getMyUpdInsChk() == 1) {
 			loginUser.setMyUpdInsChk(1);
 			service.updSeat(param);
-			return 2;
+			return 1;
 		}else if(param.getMyUpdInsChk() == 0){
 			service.insSeat(param);
 			loginUser.setMyUpdInsChk(1);
-			return 1;
+			return 2;
 		}else {
 			return 3;
 		}

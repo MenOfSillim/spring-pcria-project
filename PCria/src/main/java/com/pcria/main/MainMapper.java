@@ -14,7 +14,7 @@ public interface MainMapper {
 	List<FoodVO> selFoodList(FoodVO param);
 	
 	//좌석 관련
-	List<SeatVO> selSeat();
+	List<SeatDMI> selSeat();
 	int insSeat(SeatDMI param);
 	int updSeat(SeatDMI param);
 	int delSeat(AccessVO param);

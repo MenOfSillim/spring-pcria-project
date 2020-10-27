@@ -9,11 +9,13 @@
 		</if>
 	</select>
 	
-	<select id="selSeat" resultType="SeatVO">
-		SELECT A.s_no, A.s_val, B.u_no, B.s_occupied
+	<select id="selSeat" resultType="SeatDMI">
+		SELECT A.s_no, A.s_val, B.u_no, B.s_occupied, C.u_time
 		FROM s_code_d A
 		LEFT JOIN t_seat B
 		ON A.s_no = B.s_no
+		LEFT JOIN t_user C
+		ON B.u_no = C.u_no
 		ORDER BY A.s_no ASC
 	</select>
 	

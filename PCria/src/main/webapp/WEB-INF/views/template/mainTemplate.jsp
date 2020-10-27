@@ -85,10 +85,25 @@
     			var time = document.getElementById('span_time')
     			if(time != null) {
     				time.innerText = ''
-    				time.innerText = res.data    				
+    				time.innerText = others_time(res.data)    				
     			}
+				var myBtn = document.querySelector('.btnMySelSeat')
+				if(myBtn != null) {
+					myBtn.removeChild(myBtn.lastChild)
+					var myU_time = res.data
+					var time_div = document.createElement('div')
+					time_div.innerText = ''
+					time_div.innerText = others_time(myU_time)
+					
+					myBtn.append(time_div)										
+				}
     		})
     	}
+    }
+
+    function others_time(other_time) {
+    	var otherArr = other_time.split(':')
+    	return `\${otherArr[0]}:\${otherArr[1]}`
     }
 </script>
 </html>
