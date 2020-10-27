@@ -43,4 +43,19 @@
 		FROM t_seat
 		WHERE u_no = #{u_no}
 	</select>
+	
+	<update id="updProfile" parameterType="AccessVO">
+		UPDATE t_user
+		SET
+		u_name = #{u_name}
+		, u_birth = #{u_birth}
+		<if test='u_profile != null'>
+		, u_profile = #{u_profile}
+		</if>
+		<if test="salt != null">
+		, salt = #{salt}
+		, u_password = #{u_password}
+		</if>
+		WHERE u_no = #{u_no}
+	</update>
 </mapper>

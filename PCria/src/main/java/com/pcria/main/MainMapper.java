@@ -21,4 +21,7 @@ public interface MainMapper {
 	
 	//좌석 관련 -> 로그인 세션 삽입
 	AccessVO selLoginUserSeat(int param);
+	
+	//파일 등록
+	int updProfile(AccessVO param);
 }

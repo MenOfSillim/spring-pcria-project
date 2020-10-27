@@ -68,43 +68,41 @@
 	
 	
     function changeColorSeat(s_val, clickId, clickClassName){
-        if(clickClassName == 'btnSelSeats'){
-        	if(s_val == myS_val){
-        		if(confirm('선택한 좌석을 취소하시겠습니까')){
-        			clickId.classList.remove('btnSelSeats')
-                    clickId.classList.add('btnEmptySeats')
-                    clickId.childNodes[1].innerText = '이용 가능'
-                    myS_val = ''
-                    myS_occupied = 0
-                    myS_no = 0
-        		}
-        	}else{
-        		alert('이미 사용중인 좌석입니다.')
-        	}
-        }else{
+        if(clickClassName == 'btnMySelSeat' && s_val == myS_val){
+       		if(confirm('선택한 좌석을 취소하시겠습니까')){
+       			clickId.classList.remove('btnMySelSeat')
+                   clickId.classList.add('btnEmptySeats')
+                   clickId.childNodes[1].innerText = '이용 가능'
+                   myS_val = ''
+                   myS_occupied = 0
+                   myS_no = 0
+       		}
+        }else if(clickClassName == 'btnSelSeats' && s_val != myS_val){
         	if(myS_occupied == 1){
+        		alert('이용중입니다.')
+        	}else{
         		//이전 선택된 자리 지우기
         		if(confirm('자리를 이동하시겠습니까?')){
 	        		var prevSelId = document.getElementById(myS_val)
-	        		prevSelId.classList.remove('btnSelSeats')
+	        		prevSelId.classList.remove('btnMySelSeat')
 	        		prevSelId.classList.add('btnEmptySeats')
 	        		prevSelId.childNodes[1].innerText = '이용 가능'
 	        		
 	        		clickId.classList.remove('btnEmptySeats')
-	        		clickId.classList.add('btnSelSeats')
+	        		clickId.classList.add('btnMySelSeat')
 	        		clickId.childNodes[1].innerText = '이용중'
 	        		myS_val = s_val
 	        		myS_no = clickId.childNodes[2].value
 	        		myS_occupied = 1;
         		}
-        	}else{
-        		clickId.classList.remove('btnEmptySeats')
-        		clickId.classList.add('btnSelSeats')
-        		clickId.childNodes[1].innerText = '이용중'
-        		myS_val = s_val
-        		myS_no = clickId.childNodes[2].value
-        		myS_occupied = 1;
         	}
+        }else{
+       		clickId.classList.remove('btnEmptySeats')
+       		clickId.classList.add('btnMySelSeat')
+       		clickId.childNodes[1].innerText = '이용중'
+       		myS_val = s_val
+       		myS_no = clickId.childNodes[2].value
+       		myS_occupied = 1;
         }
     }
     
@@ -129,7 +127,11 @@
                 var s_occupied = seatArr[j].s_occupied
                 if(s_occupied == 1){
                 	divS_occupied.innerText = '이용중'
-                	btn.classList.add('btnSelSeats')
+                	if(txt == myS_val){
+                		btn.classList.add('btnMySelSeat')
+                	}else{
+	                	btn.classList.add('btnSelSeats')
+                	}
                 }else{
                 	divS_occupied.innerText = '이용 가능'
                 	btn.classList.add('btnEmptySeats')

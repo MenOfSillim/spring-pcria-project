@@ -16,6 +16,12 @@ public class AccessVO {
 	private int s_no;
 	private int s_occupied;
 	
+	//mypage에서 사용하는 것들
+	private String u_profile;
+	private String r_dt;
+	private String m_dt;
+	private String u_repassword;
+	
 	public String getSalt() {
 		return salt;
 	}
@@ -87,5 +93,29 @@ public class AccessVO {
 	}
 	public void setS_occupied(int s_occupied) {
 		this.s_occupied = s_occupied;
+	}
+	public String getU_profile() {
+		return u_profile;
+	}
+	public void setU_profile(String u_profile) {
+		this.u_profile = u_profile;
+	}
+	public String getR_dt() {
+		return r_dt;
+	}
+	public void setR_dt(String r_dt) {
+		this.r_dt = r_dt;
+	}
+	public String getM_dt() {
+		return m_dt;
+	}
+	public void setM_dt(String m_dt) {
+		this.m_dt = m_dt;
+	}
+	public String getU_repassword() {
+		return u_repassword;
+	}
+	public void setU_repassword(String u_repassword) {
+		this.u_repassword = u_repassword;
 	}
 }
