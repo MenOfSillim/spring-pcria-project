@@ -78,11 +78,11 @@
                    myS_no = 0
        		}
         }else if(clickClassName == 'btnSelSeats' && s_val != myS_val){
+       		alert('이용중입니다.')
+        }else{
         	if(myS_occupied == 1){
-        		alert('이용중입니다.')
-        	}else{
-        		//이전 선택된 자리 지우기
-        		if(confirm('자리를 이동하시겠습니까?')){
+	       		//이전 선택된 자리 지우기
+	       		if(confirm('자리를 이동하시겠습니까?')){
 	        		var prevSelId = document.getElementById(myS_val)
 	        		prevSelId.classList.remove('btnMySelSeat')
 	        		prevSelId.classList.add('btnEmptySeats')
@@ -94,15 +94,17 @@
 	        		myS_val = s_val
 	        		myS_no = clickId.childNodes[2].value
 	        		myS_occupied = 1;
-        		}
-        	}
-        }else{
-       		clickId.classList.remove('btnEmptySeats')
-       		clickId.classList.add('btnMySelSeat')
-       		clickId.childNodes[1].innerText = '이용중'
-       		myS_val = s_val
-       		myS_no = clickId.childNodes[2].value
-       		myS_occupied = 1;
+	        	}
+       		}else{
+       			if(confirm('좌석을 선택하시겠습니까?')){
+		       		clickId.classList.remove('btnEmptySeats')
+		       		clickId.classList.add('btnMySelSeat')
+		       		clickId.childNodes[1].innerText = '이용중'
+		       		myS_val = s_val
+		       		myS_no = clickId.childNodes[2].value
+		       		myS_occupied = 1;
+       			}
+       		}
         }
     }
     
