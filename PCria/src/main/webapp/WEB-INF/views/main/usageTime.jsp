@@ -10,7 +10,7 @@
 	<h1>PCria 사용 시간 예약</h1>
 	<div id="user_info">
 		<p>${data.u_name}님 반갑습니다.</p>
-		<p id="current_time">잔여 시간 <span id="span_time">${data.u_time}</span> 남았습니다.</p>
+		<p id="current_time">잔여 시간 <span id="span_time"></span> 남았습니다.</p>
 		<p id="current_price"></p>
 		<div id="div_coin">
 			<input type="text" name="coin" id="coin">원
@@ -36,15 +36,22 @@
 	    </div>  
 	</form>
 	<button onclick="start()">시작</button>
-    <h1>Sample01 : 내일까지</h1> 
+    <h1>카운트 다운</h1> 
     <h2 id="sample01"></h2> <br/> 
 </div>	
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
+	var data_u_time = '${data.u_time}'
+	var time_value = others_time_1(data_u_time)
+	span_time.innerText = time_value
+	
 	function curr_price(coin) {
 		current_price.innerText = '현재 잔액 '+ numberFormat(coin) + '원 남았습니다.'
 	}
-	
+	function others_time_1(other_time) {
+    	var otherArr = other_time.split(':')
+    	return `\${otherArr[0]}:\${otherArr[1]}`
+    }
 	curr_price(${data.u_wallet})
 	
 	function insert_coin() {

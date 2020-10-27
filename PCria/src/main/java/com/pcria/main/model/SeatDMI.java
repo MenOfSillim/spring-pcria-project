@@ -7,8 +7,15 @@ public class SeatDMI extends SeatVO{
 	private int myS_occupied;
 	private int myUpdInsChk;
 	private String myS_val;
+	private String u_time;
 	
-	private List<SeatVO> ajaxSelSeat;
+	public String getU_time() {
+		return u_time;
+	}
+	public void setU_time(String u_time) {
+		this.u_time = u_time;
+	}
+	private List<SeatDMI> ajaxSelSeat;
 	
 	public int getMyS_no() {
 		return myS_no;
@@ -28,10 +35,10 @@ public class SeatDMI extends SeatVO{
 	public void setMyS_val(String myS_val) {
 		this.myS_val = myS_val;
 	}
-	public List<SeatVO> getAjaxSelSeat() {
+	public List<SeatDMI> getAjaxSelSeat() {
 		return ajaxSelSeat;
 	}
-	public void setAjaxSelSeat(List<SeatVO> ajaxSelSeat) {
+	public void setAjaxSelSeat(List<SeatDMI> ajaxSelSeat) {
 		this.ajaxSelSeat = ajaxSelSeat;
 	}
 	public int getMyUpdInsChk() {

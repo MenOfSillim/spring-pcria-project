@@ -62,6 +62,7 @@ public class CountingController {
 			param.setU_time("100"); // 정각이 아닐 경우 1분 감소
 		}
 		int result = couService.discTime(param);
+		loginUser = accService.userInfo(param, hs); // 감소한 시간을 넣기위한 갱신
 		return loginUser.getU_time();
 	}
 	

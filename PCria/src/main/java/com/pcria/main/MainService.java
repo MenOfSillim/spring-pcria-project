@@ -34,7 +34,7 @@ public class MainService {
 		return list;
 	}
 	
-	public List<SeatVO> selSeat(){
+	public List<SeatDMI> selSeat(){
 		return mapper.selSeat();
 	}
 	//seat 관련 service

@@ -9,6 +9,8 @@
 	<div id="btnContainer">
 		<button id="btnSelSeat" onclick="extractSeatList()">좌석 선택 완료</button>
 	</div>
+	<input type="hidden" value="${data.u_time}" id="u_time">
+	<input type="hidden" id="sample01">
 </div>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
@@ -22,7 +24,6 @@
     var myS_occupied = 0
     //내가 기존에 자리가 있었는지, 신규인지 체크
 	var myUpdInsChk = 0
-	ajaxSelListSeat(alphabetArr)
 	
     //좌석 선택 완료 버튼 클릭 시 좌석 업데이트
     function ajaxUpdSeat(s_no, s_occupied, chk) {
@@ -36,10 +37,21 @@
 			myUpdInsChk = 1
 			console.log(`myUpdInsChk 후 : \${myUpdInsChk}`)
 			
+			var myBtn = document.querySelector('.btnMySelSeat')
+			var u_time = document.createElement('div')
+			var myU_time = `${data.u_time}`
 			if(res.data == 1){
 				alert('좌석 이동이 완료되었습니다.')
+				myBtn.append(u_time)
+				u_time.innerText = ''
+				u_time.innerText = others_time(myU_time)
+				start()
 			}else if(res.data == 2){
 				alert('좌석 등록이 완료되었습니다.')
+				myBtn.append(u_time)
+				u_time.innerText = ''
+				u_time.innerText = others_time(myU_time)
+				start()
 			}else{
 				alert('실패했습니다.')
 			}
@@ -88,6 +100,8 @@
 	        		prevSelId.classList.add('btnEmptySeats')
 	        		prevSelId.childNodes[1].innerText = '이용 가능'
 	        		
+	        		prevSelId.removeChild(prevSelId.lastChild)
+	        		
 	        		clickId.classList.remove('btnEmptySeats')
 	        		clickId.classList.add('btnMySelSeat')
 	        		clickId.childNodes[1].innerText = '이용중'
@@ -128,11 +142,17 @@
                 var divS_occupied = document.createElement('div')
                 var s_occupied = seatArr[j].s_occupied
                 if(s_occupied == 1){
-                	divS_occupied.innerText = '이용중'
+                 	divS_occupied.innerText = '이용중'
                 	if(txt == myS_val){
                 		btn.classList.add('btnMySelSeat')
                 	}else{
 	                	btn.classList.add('btnSelSeats')
+                 	// 다른 사람 시간 추가 하는 곳
+           				var other_div = document.createElement('div')
+           				var other_time = seatArr[j].u_time
+           				btn.append(others_time(other_time))
+           				other_div.innerText = ''
+           				other_div.innerText = others_time(other_time)
                 	}
                 }else{
                 	divS_occupied.innerText = '이용 가능'
@@ -163,6 +183,24 @@
             seatsContainer.appendChild(divParent)
         })
     }
+    function time_count() {
+    	if(sessionStorage.getItem('otherCount') == null) {
+	    	sessionStorage.setItem('otherCount', -1)    		
+    	} else {
+    		sessionStorage.setItem('otherCount', sessionStorage.getItem('otherCount') - 1)
+    	}
+		seatsContainer.innerText = ''
+    	ajaxSelListSeat(alphabetArr)
+    	
+    }
+    
+    var other_timer = null
+    
+    function Start_other_timer() {
+    	time_count()
+    	other_timer = setInterval(time_count, 60000)
+    }
+    Start_other_timer()
     //시작 시 전체 PC방 좌석 출력(완료)
 	function ajaxSelListSeat(alphabetArr) {
 		axios.get('/main/ajaxSelSeat').then(function(res) {
@@ -176,6 +214,69 @@
 			let seatArr = res.data.ajaxSelSeat
 			//좌석 만드는 함수 실행
 			makeSeatBtns(alphabetArr, 8, seatArr)
+			
+			var myBtn = document.querySelector('.btnMySelSeat')
+			if(myBtn != null) {
+				var u_time = document.createElement('div')
+				var myU_time = `${data.u_time}`
+				myBtn.append(u_time)
+				u_time.innerText = ''
+				u_time.innerText = others_time(myU_time)				
+			}
 		})
 	}
+
+    const countDownTimer = function (id, date) { 
+        var _vDate = new Date(date); // 전달 받은 일자 
+        var _second = 1000; 
+        var _minute = _second * 60; 
+        var _hour = _minute * 60; 
+        var _day = _hour * 24; 
+        var timer; 
+        var i = -1;
+
+        function showRemaining() { 
+            var now = new Date(); 
+            var distDt = _vDate - now;
+            if(sessionStorage.getItem('timeset') == null) {
+	            sessionStorage.setItem('timeset', distDt); // 세션에 초기 시간 삽입
+	            sessionStorage.setItem('count', i); // 세션에 초기 시간 삽입            	
+            }
+            if (distDt < 0) { 
+                clearInterval(timer); 
+                document.getElementById(id).textContent = '해당 이벤트가 종료 되었습니다!'; 
+                return; 
+        
+            } 
+            var days = Math.floor(distDt / _day); 
+            var hours = Math.floor((distDt % _day) / _hour); 
+            var minutes = Math.floor((distDt % _hour) / _minute); 
+            var seconds = Math.floor((distDt % _minute) / _second); 
+
+            //document.getElementById(id).textContent = date.toLocaleString() + "까지 : "; 
+            document.getElementById(id).textContent = days + '일 '; 
+            document.getElementById(id).textContent += hours + '시간 '; 
+            document.getElementById(id).textContent += minutes + '분 '; 
+            document.getElementById(id).textContent += seconds + '초'; 
+            }
+
+        timer = setInterval(showRemaining, 1000); 
+    } 
+    function start() {
+        var dateObj = new Date(); 
+    	var time = u_time.value
+    	var real_time = 0
+    	console.log(time)
+    	if(time != '00:00:00') {
+            var timeArr = time.split(':')
+            console.log(parseInt(timeArr[0]))
+            real_time = parseInt(timeArr[0] * 3600) + parseInt(timeArr[1] * 60) + parseInt(timeArr[0])
+            console.log(real_time)
+    	} else {
+    		real_time = 0
+    	}
+        dateObj.setTime(dateObj.getTime() + real_time * 1000); 
+        countDownTimer('sample01', dateObj); // 남은 시간부터 카운트다운
+    }
+    
 </script>

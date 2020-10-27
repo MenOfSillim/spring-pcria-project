@@ -5,6 +5,7 @@ public class SeatVO {
 	private String s_val;
 	private int u_no;
 	private int s_occupied;
+	
 	public int getU_no() {
 		return u_no;
 	}
