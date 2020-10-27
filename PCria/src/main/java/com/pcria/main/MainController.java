@@ -12,15 +12,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.oreilly.servlet.MultipartRequest;
 import com.pcria.Const;
 import com.pcria.SecurityUtils;
 import com.pcria.access.AccessService;
 import com.pcria.access.model.AccessVO;
 import com.pcria.counting.model.CountingDMI;
 import com.pcria.main.model.FoodVO;
-import com.pcria.main.model.SeatDMI;
+import com.pcria.main.model.SeatDMI;import com.sun.org.apache.xpath.internal.operations.Mod;
 
 @Controller
 @RequestMapping("/main")
@@ -106,17 +108,17 @@ public class MainController {
 		
 		model.addAttribute(Const.MENU_ID, "profile");
 		model.addAttribute(Const.VIEW, "main/profile");
-		model.addAttribute(Const.CSS, "main/seat");
+		model.addAttribute(Const.CSS, "main/profile");
 		
 		return "/template/mainTemplate";
 	}
-	@RequestMapping(value = "/myPage", method = RequestMethod.GET)
-	public String myPage(Model model) {
-		
-		model.addAttribute(Const.MENU_ID, "myPage");
-		model.addAttribute(Const.VIEW, "main/myPage");
-		model.addAttribute(Const.CSS, "main/seat");
-		
-		return "/template/mainTemplate";
+	@RequestMapping(value = "/profile", method = RequestMethod.POST)
+	public String profile(MultipartHttpServletRequest mreq, AccessVO param ,HttpSession hs, RedirectAttributes ra) {
+		System.out.println(param.getU_name());
+		int result = service.updProfile(mreq, param, hs);
+		System.out.println("result : "+result);
+		ra.addFlashAttribute("result", result);
+		return "redirect:/main/profile";
+
 	}
 }

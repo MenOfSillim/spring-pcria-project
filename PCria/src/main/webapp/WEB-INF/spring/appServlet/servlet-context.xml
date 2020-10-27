@@ -74,10 +74,6 @@
 			<beans:bean class="com.pcria.LoginCheckInterceptor"/>
 		</interceptor>
 		
-		<!-- <interceptor>
-			<mapping path="/rest/*"/>
-			<beans:bean class="com.spring.pcria.RestInterceptor"/>
-		</interceptor> -->
 	</interceptors> 
 	
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
