@@ -9,7 +9,7 @@
 <div id="allContainer">
 	<h1>PCria 사용 시간 예약</h1>
 	<div id="user_info">
-		<p>${data.u_name}님 반갑습니다.</p>
+		<p><span>${data.u_name}</span>님 반갑습니다.</p>
 		<p id="current_time">잔여 시간 <span id="span_time"></span> 남았습니다.</p>
 		<p id="current_price"></p>
 		<div id="div_coin">
@@ -28,16 +28,13 @@
 	       <div class="modal__content">
 	        <div id="modal_btn"><span class="material-icons">clear</span></div>
 	 		<div id="sel_time">
-	 			<span id="sel__time"></span>
-	 			<span id="sel__price"></span>
+	 			<p id="sel__time"></p>
+	 			<p id="sel__price"></p>
 	 		</div>
 	 		<input type="submit" value="결제하기" id="time_sub">
 	       </div>
 	    </div>  
 	</form>
-	<button onclick="start()">시작</button>
-    <h1>카운트 다운</h1> 
-    <h2 id="sample01"></h2> <br/> 
 </div>	
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
@@ -46,7 +43,7 @@
 	span_time.innerText = time_value
 	
 	function curr_price(coin) {
-		current_price.innerText = '현재 잔액 '+ numberFormat(coin) + '원 남았습니다.'
+		current_price.innerHTML = '현재 잔액 <span>'+ numberFormat(coin) + '</span>원 남았습니다.'
 	}
 	function others_time_1(other_time) {
     	var otherArr = other_time.split(':')
@@ -57,6 +54,10 @@
 	function insert_coin() {
 		var coin = document.getElementById('coin').value
 		console.log('coin : ' + coin)
+		if(coin == 0) {
+			alert('금액을 입력하세요')
+			return false
+		}
 		if(confirm('충전하시겠습니까?')) {
 			axios.post('/count/coinAjax', {
 				u_wallet : coin
@@ -70,12 +71,15 @@
 		}
 	}
 
+	
 	function make_btn() {
 		var selArr =[1, 2, 3, 5, 10, 20]
 		var selDiv = document.createElement('div')
-		selDiv.setAttribute('id', 'sel_btn')
+		selDiv.setAttribute('class', 'sel_div')
 		for(var i = 0; i < selArr.length; i++) {
 			var sel_btn = document.createElement('button')
+			sel_btn.setAttribute('class','btn_list')
+			sel_btn.setAttribute('id',selArr[i])
 			sel_btn.setAttribute('onclick', 'pc_time('+selArr[i]+')')
 			sel_btn.innerText = selArr[i]+':00시간\n'+numberFormat(selArr[i]*1200)+'원'
 			selDiv.append(sel_btn)
@@ -87,10 +91,20 @@
 		sel_div.append(selDiv)
 	}
 	make_btn()
-
-	function numberFormat(inputNumber) {
-	   return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	}
+	
+	const selBtn = (id) => {
+		const u_id = document.getElementById(id)
+		u_id.classList.remove('btn_list')
+		u_id.classList.add('btn_sel')
+	} // 선택 버튼
+	
+	const chanBtn = (id) => {
+		const u_id = document.getElementById(id)
+		u_id.classList.remove('btn_sel')
+		u_id.classList.add('btn_list')
+	} // 선택 변경 버튼
+	
+	var temp_btn = 0 // 이전 인덱스를 담기 위한 변수
 	
 	function pc_time(put_hour) {
 		var hour = put_hour
@@ -101,8 +115,17 @@
 		timeFrm.u_time.value = hour * 10000
 		timeFrm.u_wallet.value = price
 		
-		sel__time.innerText = hour + ':00 시간'
-		sel__price.innerText = numberFormat(price) + '원'
+		sel__time.innerText = '선택한 시간은 ' + hour + ':00 시간입니다'
+		sel__price.innerText = '요금은 ' + numberFormat(price) + '원 입니다'
+		
+		const btn = document.getElementById(put_hour)
+		btn.addEventListener('click', selBtn(put_hour))
+		if(temp_btn != 0) { // 선택 변경을 위해 추가
+			const chan_btn = document.getElementById(temp_btn)
+			chan_btn.addEventListener('click', chanBtn(temp_btn))
+		}
+		
+		temp_btn = put_hour
 	}
 	
 	const openButton = document.getElementById("open")
@@ -110,6 +133,10 @@
     const overlay = modal.querySelector(".modal__overlay")
     const closeBtn = modal.querySelector("#modal_btn")
     const openModal = () => {
+    	if(timeFrm.u_time.value == 0){
+    		alert('시간을 먼저 선택해 주세요.')
+    		return false
+    	}
         modal.classList.remove("hidden")
     }
     const closeModal = () => {
@@ -125,56 +152,8 @@
 		}
 		alert('선택이 완료되었습니다.')
 	}
-    const countDownTimer = function (id, date) { 
-        var _vDate = new Date(date); // 전달 받은 일자 
-        var _second = 1000; 
-        var _minute = _second * 60; 
-        var _hour = _minute * 60; 
-        var _day = _hour * 24; 
-        var timer; 
-        var i = 0;
 
-        function showRemaining() { 
-            var now = new Date(); 
-            var distDt = _vDate - now;
-            if(sessionStorage.getItem('timeset') == null) {
-	            sessionStorage.setItem('timeset', distDt); // 세션에 초기 시간 삽입
-	            sessionStorage.setItem('count', i); // 세션에 초기 시간 삽입            	
-            }
-            if (distDt < 0) { 
-                clearInterval(timer); 
-                document.getElementById(id).textContent = '해당 이벤트가 종료 되었습니다!'; 
-                return; 
-        
-            } 
-            var days = Math.floor(distDt / _day); 
-            var hours = Math.floor((distDt % _day) / _hour); 
-            var minutes = Math.floor((distDt % _hour) / _minute); 
-            var seconds = Math.floor((distDt % _minute) / _second); 
-
-            //document.getElementById(id).textContent = date.toLocaleString() + "까지 : "; 
-            document.getElementById(id).textContent = days + '일 '; 
-            document.getElementById(id).textContent += hours + '시간 '; 
-            document.getElementById(id).textContent += minutes + '분 '; 
-            document.getElementById(id).textContent += seconds + '초'; 
-            }
-
-        timer = setInterval(showRemaining, 1000); 
-    } 
-    function start() {
-        var dateObj = new Date(); 
-    	var time = span_time.innerText
-    	var real_time = 0
-    	console.log(time)
-    	if(time != '00:00:00') {
-            var timeArr = time.split(':')
-            console.log(parseInt(timeArr[0]))
-            real_time = parseInt(timeArr[0] * 3600) + parseInt(timeArr[1] * 60) + parseInt(timeArr[0])
-            console.log(real_time)
-    	} else {
-    		real_time = 0
-    	}
-        dateObj.setTime(dateObj.getTime() + real_time * 1000); 
-        countDownTimer('sample01', dateObj); // 남은 시간부터 카운트다운
-    }
+	function numberFormat(inputNumber) {
+	   return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
 </script>
