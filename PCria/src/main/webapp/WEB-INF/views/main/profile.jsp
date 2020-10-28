@@ -49,17 +49,52 @@
 		</div>
 	</div>
 	<div id="rightContainer">
+		<div id="leftInfo">
+			<h3>총 충전 시간</h3>
+			<div id="myTotalTime">
+				<input type="text" class="updList" readonly>
+			</div>
+			<h3>총 먹거리 주문 금액</h3>
+			<div id="myTotalFoodPayment">
+				<input type="text" class="updList" readonly>
+			</div>
+		</div>
+		<div id="rightInfo">
+			<h3>등록 일자</h3>
+			<div id="r_dt">
+				<input type="text" class="updList" readonly>
+			</div>
+			<h3>수정 일자</h3>
+			<div id="m_dt">
+				<input type="text" class="updList" readonly>
+			</div>
+		</div>
 		<h3>나의 주문 목록</h3>
 		<div id="myOrderList">
-		
 		</div>
 	</div>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script type="text/javascript">
 		var origin_name = '${loginUser.u_name}'
 		var result = '${result}'
 		
-		if(result == 1) alert('프로필 업데이트 완료되었습니다.')
+		ajaxSelMyInfo()
 		
+		function selMyInfo(myInfo) {
+			myTotalTime.childNodes[1].value = myInfo.u_totalTime 
+			myTotalFoodPayment.childNodes[1].value = myInfo.u_totalPayment 
+			r_dt.childNodes[1].value = myInfo.r_dt 
+			m_dt.childNodes[1].value = myInfo.m_dt 
+		}
+		
+		if(result == 1) alert('프로필 업데이트 완료되었습니다.')
+		function ajaxSelMyInfo(){
+			axios.get('/main/ajaxSelMyInfo').then(function(res) {
+				console.log(res)
+				let myInfo = res.data
+				selMyInfo(myInfo)
+			})
+		}
 		function checkUptUser() {
 	      if(frm.u_password.value.length > 0) {         
 	         if(frm.u_password.value.length < 5){

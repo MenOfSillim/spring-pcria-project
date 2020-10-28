@@ -103,6 +103,12 @@ public class MainController {
 			return 3;
 		}
 	}
+	//프로필 처음 입장 시 등록일자, 수정일자, 사용금액 등 가져오기
+	@RequestMapping(value = "/ajaxSelMyInfo", method = RequestMethod.GET, produces = "application/json; charset=utf8")
+	public @ResponseBody AccessVO ajaxSelMyInfo(HttpSession hs) {
+		System.out.println("넘어옴");
+		return service.ajaxSelMyInfo(SecurityUtils.getLoginUserPk(hs));
+	}
 	
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
 	public String profile(Model model) {
@@ -113,12 +119,10 @@ public class MainController {
 		
 		return "/template/mainTemplate";
 	}
+	
 	@RequestMapping(value = "/profile", method = RequestMethod.POST)
 	public String profile(MultipartHttpServletRequest mreq, AccessVO param ,HttpSession hs, RedirectAttributes ra) {
-		System.out.println(param.getU_name());
-		int result = service.updProfile(mreq, param, hs);
-		System.out.println("result : "+result);
-		ra.addFlashAttribute("result", result);
+		ra.addFlashAttribute("result", service.updProfile(mreq, param, hs));
 		return "redirect:/main/profile";
 
 	}

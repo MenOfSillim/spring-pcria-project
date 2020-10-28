@@ -26,7 +26,7 @@
 }
 #allContainer #rightContainer{
 	display: inline-block;
-	width: 700px;
+	width: 660px;
 	height: 645px;
 	position: absolute;
 	right: 0;
@@ -117,7 +117,42 @@
 }
 #allContainer #rightContainer h3{
 	color: gray;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+#allContainer #rightContainer #leftInfo{
+	display: inline-block;
+	width: 300px;
+}
+#allContainer #rightContainer #rightInfo{
+	display: inline-block;
+	width: 300px;
+}
+#allContainer #rightContainer .updList{
+	text-align: center;
 }
 #allContainer #rightContainer #myOrderList{
-	
+	width: 556px;
+    height: 360px;
+    background: #FFFFFF;
+    padding-left: 30px;
+    padding-right: 20px;
+    border: 1px solid #4FA2C7;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin: 5px auto;
+    overflow: auto;
 }
+#allContainer #rightContainer #myOrderList::-webkit-scrollbar {
+    width: 8px;
+    height: 100%;
+  }
+#allContainer #rightContainer #myOrderList::-webkit-scrollbar-thumb{
+    background-color: #4FA2C7;
+    border-radius: 10px;
+  }
+#allContainer #rightContainer #myOrderList::-webkit-scrollbar-track {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+  }

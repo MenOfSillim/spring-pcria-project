@@ -25,4 +25,7 @@ public interface MainMapper {
 	
 	//파일 등록
 	int updProfile(AccessVO param);
+	
+	//프로필 기타 정보 가져오기
+	AccessVO ajaxSelMyInfo(int u_no);
 }

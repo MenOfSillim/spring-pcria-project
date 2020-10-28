@@ -60,6 +60,7 @@
 		SET
 		u_name = #{u_name}
 		, u_birth = #{u_birth}
+		, m_dt = now()
 		<if test='u_profile != null'>
 		, u_profile = #{u_profile}
 		</if>
@@ -69,4 +70,11 @@
 		</if>
 		WHERE u_no = #{u_no}
 	</update>
+	
+	<!-- 프로필 기타 정보 가져오기 -->
+	<select id="ajaxSelMyInfo" resultType="AccessVO">
+		SELECT r_dt, m_dt, u_totalPayment, u_totalTime
+		FROM t_user
+		WHERE u_no = #{u_no}
+	</select>
 </mapper>
