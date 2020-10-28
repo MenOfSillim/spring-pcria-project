@@ -150,7 +150,8 @@
                  	// 다른 사람 시간 추가 하는 곳
            				var other_div = document.createElement('div')
            				var other_time = seatArr[j].u_time
-           				btn.append(others_time(other_time))
+           				other_div.append(others_time(other_time))
+           				btn.append(other_div)
            				other_div.innerText = ''
            				other_div.innerText = others_time(other_time)
                 	}
