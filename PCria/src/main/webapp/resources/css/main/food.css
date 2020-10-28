@@ -25,7 +25,7 @@ button {
 	text-align: center;
 }
 button:hover {
-	background-color: darkgoldenrod
+	background-color: goldenrod;
 }
 .food_page_item
 {

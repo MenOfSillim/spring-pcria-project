@@ -37,17 +37,17 @@ button{
 	cursor: pointer;
 }
 button:hover {
-	background-color: darkgoldenrod
+	background-color: goldenrod;
 }
 .btnEmptySeats {
 	background-color: lightgray;
-	color: gray;
+	color: #4A4F5A;
 	position: relative;
 }
 .btnEmptySeats div:nth-child(1){
 	position: absolute;
-	top: 5px;
-	left: 55px;
+	top: 10px;
+	left: 15px;
 }  
 .btnEmptySeats div:nth-child(2){
 	position: absolute;
@@ -55,43 +55,29 @@ button:hover {
 	left: 30px;
 }
 .btnSelSeats{
-	background-color: #DB4455;
+	background-color: #DC143C;
 	position: relative;
 }
-.btnSelSeats div:nth-child(1){
-	position: absolute;
-	top: 5px;
-	left: 55px;
-}  
-.btnSelSeats div:nth-child(2){
-	position: absolute;
-	bottom: 0px;
-	left: 40px;
-}
-.btnSelSeat div:nth-child(4){
-	position: absolute;
-	bottom: 22px;
-	left: 40px;
-}  
 .btnMySelSeat{
-	background-color: #4B89DC;
+	background-color: #0679C0;
 	position: relative;
 }
-.btnMySelSeat div:nth-child(1){
+.btnSelSeats div:nth-child(1), .btnMySelSeat div:nth-child(1){
 	position: absolute;
-	top: 2px;
-	left: 52px;
-}
-.btnMySelSeat div:nth-child(2){
+	top: 10px;
+	left: 15px;
+}  
+.btnSelSeats div:nth-child(2), .btnMySelSeat div:nth-child(2){
 	position: absolute;
-	bottom: 0px;
+	bottom: 5px;
 	left: 40px;
 }
-.btnMySelSeat div:nth-child(4){
+.btnSelSeats div:nth-child(4), .btnMySelSeat div:nth-child(4){
 	position: absolute;
-	bottom: 22px;
-	left: 40px;
-}
+	top: 10px;
+	right:5px;
+}  
+
 span {
 	margin-top:3px;
 	margin-right: 10px;
