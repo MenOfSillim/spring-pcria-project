@@ -8,18 +8,15 @@
 .wrap {
 	background-color: gray;
     height: 100%;
-    width: 100%;
-    background-position: center;
+    width: 1870px;
     position: absolute;
     display: flex;
 }
 .background {
-	position: relative;
-	top:10%;
+	top:100px;
 	background-image: url(/res/img/login/login_background.gif);
 	background-repeat: no-repeat;
-	background-size: auto;
-	flex-grow: 1;
+	width: 1200px;
     height: 800px;
     margin-left: 120px;
 }
@@ -27,7 +24,7 @@
     width: 380px;
     height: 560px;
 	position: relative;
-	top: 39%;
+	top: 200px;
     margin: 0 auto;
     background: rgba(240, 240, 240, 0.4);
     padding: 5px;
