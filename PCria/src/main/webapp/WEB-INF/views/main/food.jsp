@@ -124,6 +124,7 @@
 		var current_id = document.getElementById(chk_id) 
 		current_id.classList.add('food_page_item')
 		var chk = chk_id.substring(4)
+		console.log(`chk : \${chk}`)
 		ajaxSelMenuList(chk)
 	}
 	//계산금액 갱신해주는 함수

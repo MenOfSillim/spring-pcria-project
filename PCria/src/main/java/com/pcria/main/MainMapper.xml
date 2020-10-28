@@ -8,6 +8,15 @@
 		WHERE i_f = #{chk}
 		</if>
 	</select>
+
+	<select id="selPopularFoodList" parameterType="FoodVO" resultType="FoodVO">
+		SELECT A.seq, B.i_f, B.f_price, B.f_pic, B.f_name
+		FROM user_food A
+		INNER JOIN t_food B
+		ON A.seq = B.seq
+		GROUP BY A.seq
+		ORDER BY SUM(A.total_quantity) DESC LIMIT 10
+	</select>
 	
 	<select id="selSeat" resultType="SeatDMI">
 		SELECT A.s_no, A.s_val, B.u_no, B.s_occupied, C.u_time

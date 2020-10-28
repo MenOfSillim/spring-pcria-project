@@ -12,6 +12,7 @@ import com.pcria.main.model.SeatVO;
 public interface MainMapper {
 	
 	List<FoodVO> selFoodList(FoodVO param);
+	List<FoodVO> selPopularFoodList(FoodVO param);
 	
 	//좌석 관련
 	List<SeatDMI> selSeat();

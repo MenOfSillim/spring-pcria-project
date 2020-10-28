@@ -150,7 +150,14 @@
                 //좌석 사용 여부 체크
                 var divS_occupied = document.createElement('div')
                 var s_occupied = seatArr[j].s_occupied
-                if(s_occupied == 1){
+                btn.append(divS_occupied)
+                //s_no를 input hidden에 추가
+                var divS_no = document.createElement('input')
+				divS_no.value = seatArr[j].s_no
+				divS_no.type = 'hidden'
+				btn.append(divS_no)
+				//이용중 text 추가와 시간 추가
+				if(s_occupied == 1){
                  	divS_occupied.innerText = '이용중'
                 	if(txt == myS_val){
                 		btn.classList.add('btnMySelSeat')
@@ -168,12 +175,6 @@
                 	divS_occupied.innerText = '이용 가능'
                 	btn.classList.add('btnEmptySeats')
                 }
-                btn.append(divS_occupied)
-                //s_no를 input hidden에 추가
-                var divS_no = document.createElement('input')
-				divS_no.value = seatArr[j].s_no
-				divS_no.type = 'hidden'
-				btn.append(divS_no)
                 //index 추가(이용중/이용가능, 좌석seq 주는 인덱스)
                 j++
                 

@@ -10,13 +10,27 @@
 	height: 100%; margin : 0 auto;
 	text-align: center;
 	margin: 0 auto;
+	position: relative;
 }
 
 #allContainer h1 {
 	margin: 40px auto;
 	margin-bottom: 30px;
 }
-
+#allContainer #leftContainer{
+	display: inline-block;
+	width: 500px;
+	height: 645px;
+	position: absolute;
+	left: 30px;
+}
+#allContainer #rightContainer{
+	display: inline-block;
+	width: 700px;
+	height: 645px;
+	position: absolute;
+	right: 0;
+}
 #allContainer .frmContainer {
 	margin: 20px auto;
 	margin-bottom :10px;
@@ -99,5 +113,11 @@
 
 #allContainer #frmBtn:hover {
 	cursor: pointer;
-	background-color: darkgoldenrod;
+	background-color: goldenrod;
+}
+#allContainer #rightContainer h3{
+	color: gray;
+}
+#allContainer #rightContainer #myOrderList{
+	
 }

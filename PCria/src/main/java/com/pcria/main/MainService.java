@@ -26,9 +26,9 @@ public class MainService {
 	
 	public List<FoodVO> selFoodList(FoodVO param){
 		List<FoodVO> list = null;
-		if(param.getChk() >= 1 && param.getChk() <= 6) {
-			list = mapper.selFoodList(param);
-		}else {
+		if(param.getChk() == 7) {
+			list = mapper.selPopularFoodList(param);
+		}else{
 			list = mapper.selFoodList(param);
 		}
 		return list;
