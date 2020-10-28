@@ -32,7 +32,7 @@
 	position: relative;
 	border-radius: 10px;
 	width: 40%;
-	height: 60%;
+	height: 40%;
 	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px
 		rgba(0, 0, 0, 0.23);
 }
@@ -44,6 +44,7 @@
 #modal_btn .material-icons {
 	font-size: 4em;
 	float: right;
+	cursor: pointer;
 }
 
 #sel_time {
@@ -54,11 +55,16 @@
 	display: block;
 	width: 200px;
 	height: 80px;
-	background-color: green;
-	color: white;
+	background-color: #d5e5f4;
 	border: none;
-	border-radius: 5px;
+	border-radius: 10px;
 	font-size: 1.3em;
-	margin: 0 auto;
+	margin: 80px auto;
 	clear: both;
+	cursor: pointer;
+}
+
+#sel_time p {
+	font-size: 1.5em;
+	margin-left: 30px;
 }
