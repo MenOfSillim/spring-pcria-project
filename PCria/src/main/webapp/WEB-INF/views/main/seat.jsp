@@ -40,10 +40,6 @@
 			var myBtn = document.querySelector('.btnMySelSeat')
 			var u_time = document.createElement('div')
 			var myU_time = `${data.u_time}`
-			if(myU_time == '00:00:00') {
-				alert('먼저 시간 예약을 해주세요')
-				return false
-			}
 			if(res.data == 1){
 				alert('좌석 이동이 완료되었습니다.')
 				myBtn.append(u_time)
@@ -51,13 +47,18 @@
 				u_time.innerText = others_time(myU_time)
 				start()
 			}else if(res.data == 2){
-				alert('좌석 등록이 완료되었습니다.')
-				myBtn.append(u_time)
-				u_time.innerText = ''
-				u_time.innerText = others_time(myU_time)
-				start()
+				if(myU_time == '00:00:00') {
+					alert('먼저 시간 예약을 해주세요.')
+					return false
+				} else {
+					alert('좌석 등록이 완료되었습니다.')
+					myBtn.append(u_time)
+					u_time.innerText = ''
+					u_time.innerText = others_time(myU_time)
+					start()					
+				}
 			}else{
-				alert('실패했습니다.')
+				alert('실패하였습니다.')
 			}
 		})
 	}
@@ -115,6 +116,10 @@
 	        	}
        		}else{
        			if(confirm('좌석을 선택하시겠습니까?')){
+       				if(`${data.u_time}` == '00:00:00') {
+       					alert('먼저 시간을 예약해 주세요')
+       					return false
+       				}
 		       		clickId.classList.remove('btnEmptySeats')
 		       		clickId.classList.add('btnMySelSeat')
 		       		clickId.childNodes[1].innerText = '이용중'
@@ -188,24 +193,6 @@
             seatsContainer.appendChild(divParent)
         })
     }
-    function time_count() {
-    	if(sessionStorage.getItem('otherCount') == null) {
-	    	sessionStorage.setItem('otherCount', -1)    		
-    	} else {
-    		sessionStorage.setItem('otherCount', sessionStorage.getItem('otherCount') - 1)
-    	}
-		seatsContainer.innerText = ''
-    	ajaxSelListSeat(alphabetArr)
-    	
-    }
-    
-    var other_timer = null
-    
-    function Start_other_timer() {
-    	time_count()
-    	other_timer = setInterval(time_count, 60000)
-    }
-    Start_other_timer()
     //시작 시 전체 PC방 좌석 출력(완료)
 	function ajaxSelListSeat(alphabetArr) {
 		axios.get('/main/ajaxSelSeat').then(function(res) {
@@ -230,6 +217,25 @@
 			}
 		})
 	}
+
+    function time_count() {
+    	if(sessionStorage.getItem('otherCount') == null) {
+	    	sessionStorage.setItem('otherCount', -1)    		
+    	} else {
+    		sessionStorage.setItem('otherCount', sessionStorage.getItem('otherCount') - 1)
+    	}
+		seatsContainer.innerText = ''
+    	ajaxSelListSeat(alphabetArr)
+    	
+    }
+    
+    var other_timer = null
+    
+    function Start_other_timer() {
+    	time_count()
+    	other_timer = setInterval(time_count, 60000)
+    }
+    Start_other_timer()
 
     const countDownTimer = function (id, date) { 
         var _vDate = new Date(date); // 전달 받은 일자 
