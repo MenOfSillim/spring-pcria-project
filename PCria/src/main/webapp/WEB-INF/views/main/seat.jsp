@@ -40,6 +40,10 @@
 			var myBtn = document.querySelector('.btnMySelSeat')
 			var u_time = document.createElement('div')
 			var myU_time = `${data.u_time}`
+			if(myU_time == '00:00:00') {
+				alert('먼저 시간 예약을 해주세요')
+				return false
+			}
 			if(res.data == 1){
 				alert('좌석 이동이 완료되었습니다.')
 				myBtn.append(u_time)
@@ -150,7 +154,8 @@
                  	// 다른 사람 시간 추가 하는 곳
            				var other_div = document.createElement('div')
            				var other_time = seatArr[j].u_time
-           				btn.append(others_time(other_time))
+           				other_div.append(others_time(other_time))
+           				btn.append(other_div)
            				other_div.innerText = ''
            				other_div.innerText = others_time(other_time)
                 	}
@@ -244,7 +249,7 @@
             }
             if (distDt < 0) { 
                 clearInterval(timer); 
-                document.getElementById(id).textContent = '해당 이벤트가 종료 되었습니다!'; 
+//                 document.getElementById(id).textContent = '해당 이벤트가 종료 되었습니다!'; 
                 return; 
         
             } 

@@ -9,6 +9,7 @@
 </head>
 <body>
 	<div class="wrap">
+	<div class="background"></div>
 	    <div class="form-wrap">
 	        <div class="button-wrap">
 	            <div id="btn"></div>
