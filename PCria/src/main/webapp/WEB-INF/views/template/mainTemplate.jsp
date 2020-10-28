@@ -24,7 +24,7 @@
 				<li id="usageTime"><a href="/main/usageTime" accesskey="2" title="시간 예약">시간 예약</a></li>
 				<li id="foodOrder"><a href="/main/food" accesskey="3" title="메뉴 예약">먹거리 주문</a></li>
 				<li id="profile"><a href="/main/profile" accesskey="4" title="프로필">프로필</a></li>
-				<li id="myPage"><a href="javascript:logout()" >사용종료</a></li>
+				<li id="myPage"><a href="javascript:logout(1)" >사용종료</a></li>
 			</ul>
 		</div>
 	</div>
@@ -41,8 +41,15 @@
 	var menu_id = ${menu_id}
 	menu_id.classList.add('current_page_item')
 	
-	function logout() {
-		if(confirm('로그아웃 하시겠습니까?')) {
+	function logout(root) {
+		var goout = false
+		switch(root) {
+		case 1: goout = confirm('로그아웃 하시겠습니까?')
+		break
+		case 2: goout = true
+		break
+		}
+		if(goout) {
 			sessionStorage.removeItem('timeset')
 			sessionStorage.removeItem('count')
 			sessionStorage.clear()
@@ -81,7 +88,11 @@
     		axios.post('/count/ajaxDiscTime', {
     			u_time: 100
     		}).then(function(res) {
-    			console.log(res.data)
+    			console.log('로그아웃 테스트 : ' + res.data)
+    			if(res.data == '00:00:00') {
+    				logout(2)
+    				return false
+    			}
     			var time = document.getElementById('span_time')
     			if(time != null) {
     				time.innerText = ''
