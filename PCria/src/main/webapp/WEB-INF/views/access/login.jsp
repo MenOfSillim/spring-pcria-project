@@ -9,8 +9,10 @@
 </head>
 <body>
 	<div class="wrap">
-	<div class="background"></div>
-	    <div class="form-wrap">
+		<div class="logo_img">
+			<div class="background"></div>
+		</div>
+		<div class="form-wrap">
 	        <div class="button-wrap">
 	            <div id="btn"></div>
 	            <button type="button" class="togglebtn" onclick="login()">로그인</button>
