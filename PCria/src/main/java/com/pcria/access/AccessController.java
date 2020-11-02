@@ -31,11 +31,8 @@ public class AccessController {
 	public String logout(HttpSession hs) {
 		AccessVO param = new AccessVO();
 		param.setS_no(SecurityUtils.getLoginUser(hs).getS_no());
-		System.out.println(param.getS_no());
 		param.setU_no(SecurityUtils.getLoginUserPk(hs));
-		System.out.println(param.getU_no());
 		param.setS_occupied(SecurityUtils.getLoginUser(hs).getS_occupied());
-		System.out.println(param.getS_occupied());
 		main_service.delSeat(param);
 		hs.invalidate();
 		return "redirect:/";
@@ -44,11 +41,9 @@ public class AccessController {
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Model model, @RequestParam(defaultValue="0") int err) {
 		model.addAttribute(Const.CSS, "access/login");
-		
 		if(err > 0) { // 회원가입 실패
 			model.addAttribute("msg", "에러가 발생하였습니다");
 		}
-		
 		return "/access/login";
 	}
 	

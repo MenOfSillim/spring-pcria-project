@@ -8,7 +8,6 @@ public class AccessVO {
 	private String u_birth;
 	private int u_wallet;
 	private String u_time;
-	private int hu_no;
 	private String salt;
 	
 	//seat에서 사용하는 것들 
@@ -21,6 +20,9 @@ public class AccessVO {
 	private String r_dt;
 	private String m_dt;
 	private String u_repassword;
+	private String u_totalTime;
+	private int u_totalPayment;
+	
 	
 	public String getSalt() {
 		return salt;
@@ -70,12 +72,6 @@ public class AccessVO {
 	public void setU_time(String u_time) {
 		this.u_time = u_time;
 	}
-	public int getHu_no() {
-		return hu_no;
-	}
-	public void setHu_no(int hu_no) {
-		this.hu_no = hu_no;
-	}
 	public int getMyUpdInsChk() {
 		return myUpdInsChk;
 	}
@@ -117,5 +113,17 @@ public class AccessVO {
 	}
 	public void setU_repassword(String u_repassword) {
 		this.u_repassword = u_repassword;
+	}
+	public String getU_totalTime() {
+		return u_totalTime;
+	}
+	public void setU_totalTime(String u_totalTime) {
+		this.u_totalTime = u_totalTime;
+	}
+	public int getU_totalPayment() {
+		return u_totalPayment;
+	}
+	public void setU_totalPayment(int u_totalPayment) {
+		this.u_totalPayment = u_totalPayment;
 	}
 }

@@ -9,7 +9,10 @@
 
 	<update id="updTime" parameterType="CountingVO">
 		UPDATE t_user 
-		SET u_wallet = u_wallet - #{u_wallet}, u_time = u_time + #{u_time} 
+		SET
+		 u_wallet = u_wallet - #{u_wallet},
+		 u_time = u_time + #{u_time},
+		 u_totalTime = u_totalTime + #{u_time}  
 		WHERE u_no = #{u_no}
 	</update>
 
@@ -27,7 +30,7 @@
 	
 	<update id="payFood" parameterType="CountingDMI">
 		UPDATE t_user 
-		SET u_time = u_time - #{payTime}
+		SET u_time = u_time - #{payTime}, u_totalPayment = #{totalPayment}
 		WHERE u_no = #{u_no}
 	</update>
 	

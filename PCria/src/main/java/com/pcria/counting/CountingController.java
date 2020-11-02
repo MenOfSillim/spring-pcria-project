@@ -1,6 +1,5 @@
 package com.pcria.counting;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,15 +32,18 @@ public class CountingController {
 		
 		AccessVO vo = new AccessVO();
 		vo = accService.userInfo(param, hs);
-		
+		String msg = "";
 		if(vo.getU_wallet() < param.getU_wallet()) {
-			String msg = "";
 			msg = "잔액이 부족합니다.";
 			ra.addFlashAttribute("msg", msg);
 			return "redirect:/main/usageTime";
 		}
 		
 		int result = couService.updTime(param);
+		if(result != 1) {
+			msg = "결제에 실패했습니다.";
+			ra.addFlashAttribute("msg", msg);
+		}
 		return "redirect:/main/usageTime";
 	}
 	
