@@ -7,4 +7,5 @@
 현존하는 picaplay의 기능을 구현하고자함
 
 ## 웹소켓
-https://bloodfinger.tistory.com/40
+https://bloodfinger.tistory.com/40 <br>
+https://stothey0804.github.io/project/WebSocketExam/
