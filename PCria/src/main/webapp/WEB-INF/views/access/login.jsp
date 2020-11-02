@@ -8,10 +8,10 @@
 	<link rel="stylesheet" type="text/css" href="/res/css/${css}.css">
 </head>
 <body>
+	<div id="container">
 	<div class="wrap">
-		<div class="logo_img">
-			<div class="background"></div>
-		</div>
+		<div class="logo_img"></div>
+		<div class="background"></div>
 		<div class="form-wrap">
 	        <div class="button-wrap">
 	            <div id="btn"></div>
@@ -39,6 +39,7 @@
 	            </div>
 	        </form>
 	    </div>
+	</div>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script>
