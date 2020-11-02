@@ -5,3 +5,6 @@
 
 ## 개요. 
 현존하는 picaplay의 기능을 구현하고자함
+
+## 웹소켓
+https://bloodfinger.tistory.com/40
