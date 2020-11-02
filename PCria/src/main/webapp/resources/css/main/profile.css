@@ -136,12 +136,37 @@
     height: 360px;
     background: #FFFFFF;
     padding-left: 30px;
-    padding-right: 20px;
+    padding-right: 30px;
     border: 1px solid #4FA2C7;
     box-sizing: border-box;
     border-radius: 5px;
     margin: 5px auto;
     overflow: auto;
+}
+#allContainer #rightContainer #myOrderList div span{
+	
+}
+#allContainer #rightContainer #myOrderList .myOrderContainer{
+	position: relative;
+	height: 40px;
+	padding: 8px;
+	border-bottom: 1px solid lightgray;
+}
+#allContainer #rightContainer #myOrderList .myOrderContainer span{
+	position: absolute;
+	font-size: 1.2em;
+}
+.myOrderContainer span:nth-child(1){
+	left: 30px;
+	top: 21px;
+}
+.myOrderContainer span:nth-child(2){
+	right: 200px;
+	top: 20px;
+}
+.myOrderContainer span:nth-child(3){
+	right: 30px;
+	top: 20px;
 }
 #allContainer #rightContainer #myOrderList::-webkit-scrollbar {
     width: 8px;

@@ -90,6 +90,7 @@
        			clickId.classList.remove('btnMySelSeat')
                    clickId.classList.add('btnEmptySeats')
                    clickId.childNodes[1].innerText = '이용 가능'
+               	   clickId.removeChild(clickId.lastChild)
                    myS_val = ''
                    myS_occupied = 0
                    myS_no = 0

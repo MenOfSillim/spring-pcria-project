@@ -10,7 +10,7 @@ import com.pcria.main.model.SeatVO;
 
 @Mapper
 public interface MainMapper {
-	
+	//먹거리 주문 관련 
 	List<FoodVO> selFoodList(FoodVO param);
 	List<FoodVO> selPopularFoodList(FoodVO param);
 	
@@ -28,4 +28,5 @@ public interface MainMapper {
 	
 	//프로필 기타 정보 가져오기
 	AccessVO ajaxSelMyInfo(int u_no);
+	List<FoodVO> ajaxSelMyOrderList(int u_no);
 }
