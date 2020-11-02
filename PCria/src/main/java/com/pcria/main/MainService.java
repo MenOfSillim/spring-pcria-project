@@ -55,6 +55,10 @@ public class MainService {
 		return mapper.ajaxSelMyInfo(u_no);
 	}
 	//profile 관련 service
+	public List<FoodVO> ajaxSelMyOrderList(int u_no) {
+		return mapper.ajaxSelMyOrderList(u_no);
+	}
+	//profile 관련 service
 	public int updProfile(MultipartHttpServletRequest mreq, AccessVO param, HttpSession hs) {
 		AccessVO loginUser = SecurityUtils.getLoginUser(hs);
 		param.setU_no(loginUser.getU_no());

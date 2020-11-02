@@ -42,10 +42,10 @@
 					<span class="name">생년월일</span>&nbsp;&nbsp;
 					<input type="date" name="u_birth" value="${loginUser.u_birth}" class="updList">
 				</div>
-				<div id="btnBox">
-					<input type="submit" value="업데이트" id="frmBtn" onclick="checkUptUser()">
-				</div>
 			</form>
+			<div id="btnBox">
+				<input type="submit" value="업데이트" id="frmBtn" onclick="checkUptUser()">
+			</div>
 		</div>
 	</div>
 	<div id="rightContainer">
@@ -60,7 +60,7 @@
 			</div>
 		</div>
 		<div id="rightInfo">
-			<h3>등록 일자</h3>
+			<h3>가입 일자</h3>
 			<div id="r_dt">
 				<input type="text" class="updList" readonly>
 			</div>
@@ -70,24 +70,56 @@
 			</div>
 		</div>
 		<h3>나의 주문 목록</h3>
-		<div id="myOrderList">
-		</div>
+		<div id="myOrderList"></div>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script type="text/javascript">
 		var origin_name = '${loginUser.u_name}'
 		var result = '${result}'
+		var payment = 0
 		
+		if(result == 1) alert('프로필 업데이트 완료되었습니다.')
+		ajaxSelMyOrderList()
 		ajaxSelMyInfo()
-		
+		function makeMyOrderList(listArr) {
+			for(var i = 0; i < listArr.length; i++) {
+				let div_con = document.createElement('div')
+				div_con.classList.add('myOrderContainer')
+				div_con.id = 'seq_'+listArr[i].seq
+				
+				myOrderList.append(div_con)
+				
+				let f_name = document.createElement('span')
+				f_name.innerText = listArr[i].f_name
+				div_con.append(f_name)
+
+				let total_quantity = document.createElement('span')
+				total_quantity.innerText = listArr[i].total_quantity+'개'
+				div_con.append(total_quantity)
+
+				let total_price = document.createElement('span')
+				let temp = listArr[i].f_price * listArr[i].total_quantity
+				payment += temp
+				total_price.innerText = numberWithCommas(temp)+'개'
+				div_con.append(total_price)
+			}
+			console.log(numberWithCommas(payment)+'원')
+		}
 		function selMyInfo(myInfo) {
-			myTotalTime.childNodes[1].value = myInfo.u_totalTime 
-			myTotalFoodPayment.childNodes[1].value = myInfo.u_totalPayment 
+			var timeArr = myInfo.u_totalTime.split(':')
+			myTotalTime.childNodes[1].value = timeArr[0]+'시간' 
+			myTotalFoodPayment.childNodes[1].value = numberWithCommas(myInfo.u_totalPayment)+'원'
 			r_dt.childNodes[1].value = myInfo.r_dt 
 			m_dt.childNodes[1].value = myInfo.m_dt 
 		}
 		
-		if(result == 1) alert('프로필 업데이트 완료되었습니다.')
+		function ajaxSelMyOrderList(){
+			axios.get('/main/ajaxSelMyOrderList').then(function(res) {
+				console.log(res)
+				let myOrderList = res.data
+				makeMyOrderList(myOrderList)
+			})
+		}
 		function ajaxSelMyInfo(){
 			axios.get('/main/ajaxSelMyInfo').then(function(res) {
 				console.log(res)
@@ -103,6 +135,8 @@
 	         }
 	         if(frm.u_password.value != frm.u_repassword.value) {
 	            alert('비밀번호가 일치하지 않습니다')
+	            console.log(frm.u_password.value)
+	            console.log(frm.u_repassword.value)
 	            return false
 	         }
 	      }
@@ -114,6 +148,9 @@
 	    	  }
 	      }
 	      frm.submit();
+		}
+		function numberWithCommas(x) {
+		    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		}
 	</script>
 </div>

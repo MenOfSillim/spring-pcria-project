@@ -77,4 +77,12 @@
 		FROM t_user
 		WHERE u_no = #{u_no}
 	</select>
+	<select id="ajaxSelMyOrderList" resultType="FoodVO">
+		select A.seq, A.total_quantity, B.f_price, B.f_name
+		from user_food A
+		INNER JOIN t_food B
+		ON A.seq = B.seq
+		WHERE A.u_no = #{u_no}
+		ORDER BY (total_quantity * f_price) DESC
+	</select>
 </mapper>

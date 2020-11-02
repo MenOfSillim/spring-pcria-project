@@ -30,7 +30,7 @@
 	
 	<update id="payFood" parameterType="CountingDMI">
 		UPDATE t_user 
-		SET u_time = u_time - #{payTime}, u_totalPayment = #{totalPayment}
+		SET u_time = u_time - #{payTime}, u_totalPayment = u_totalPayment + #{totalPayment}
 		WHERE u_no = #{u_no}
 	</update>
 	

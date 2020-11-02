@@ -106,8 +106,12 @@ public class MainController {
 	//프로필 처음 입장 시 등록일자, 수정일자, 사용금액 등 가져오기
 	@RequestMapping(value = "/ajaxSelMyInfo", method = RequestMethod.GET, produces = "application/json; charset=utf8")
 	public @ResponseBody AccessVO ajaxSelMyInfo(HttpSession hs) {
-		System.out.println("넘어옴");
 		return service.ajaxSelMyInfo(SecurityUtils.getLoginUserPk(hs));
+	}
+	//프로필 처음 입장 시 현재까지 주문 내역 가져오기 
+	@RequestMapping(value = "/ajaxSelMyOrderList", method = RequestMethod.GET, produces = "application/json; charset=utf8")
+	public @ResponseBody List<FoodVO> ajaxSelMyOrderList(HttpSession hs) {
+		return service.ajaxSelMyOrderList(SecurityUtils.getLoginUserPk(hs));
 	}
 	
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
