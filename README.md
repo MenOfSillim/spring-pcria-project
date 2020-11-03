@@ -30,26 +30,26 @@ https://coding-start.tistory.com/27 (Javascript 버전)<br>
  <img src="https://github.com/truespring/pikaplay/blob/main/PCria/PCria%20seat1.jpg?raw=true" width="200px" height="200px"></img>
  <img src="https://github.com/truespring/pikaplay/blob/main/PCria/PCria%20seat2.jpg?raw=true" width="200px" height="200px"></img>
  <img src="https://github.com/truespring/pikaplay/blob/main/PCria/PCria%20seat3.jpg?raw=true" width="200px" height="200px"></img>
- <img src="https://github.com/truespring/pikaplay/blob/main/PCria/PCria%20seat4.jpg?raw=true" width="200px" height="200px"></img>
- <br>
+ <img src="https://github.com/truespring/pikaplay/blob/main/PCria/PCria%20seat4.jpg?raw=true" width="200px" height="200px"></img><br>
+ 
  * 금액 충전<br>
  <img src="https://github.com/truespring/pikaplay/blob/main/PCria/PCria%20time.jpg?raw=true" width="200px" height="200px"></img>
  <img src="https://github.com/truespring/pikaplay/blob/main/PCria/PCria%20time1.jpg?raw=true" width="200px" height="200px"></img>
  <img src="https://github.com/truespring/pikaplay/blob/main/PCria/PCria%20time2.jpg?raw=true" width="200px" height="200px"></img>
- <img src="https://github.com/truespring/pikaplay/blob/main/PCria/PCria%20time3.jpg?raw=true" width="200px" height="200px"></img>
- <br>
+ <img src="https://github.com/truespring/pikaplay/blob/main/PCria/PCria%20time3.jpg?raw=true" width="200px" height="200px"></img> <br>
+ 
  * 시간 충전(금액 차감)<br>
  <img src="https://github.com/truespring/pikaplay/blob/main/PCria/PCria%20time4.jpg?raw=true" width="200px" height="200px"></img>
  <img src="https://github.com/truespring/pikaplay/blob/main/PCria/PCria%20time5.jpg?raw=true" width="200px" height="200px"></img>
  <img src="https://github.com/truespring/pikaplay/blob/main/PCria/PCria%20time6.jpg?raw=true" width="200px" height="200px"></img>
- <img src="https://github.com/truespring/pikaplay/blob/main/PCria/PCria%20time7.jpg?raw=true" width="200px" height="200px"></img>
- <br>
+ <img src="https://github.com/truespring/pikaplay/blob/main/PCria/PCria%20time7.jpg?raw=true" width="200px" height="200px"></img> <br>
+ 
  * 음식 구매(시간 차감)<br>
  <img src="https://github.com/truespring/pikaplay/blob/main/PCria/PCria%20food.jpg?raw=true" width="200px" height="200px"></img>
  <img src="https://github.com/truespring/pikaplay/blob/main/PCria/PCria%20food1.jpg?raw=true" width="200px" height="200px"></img>
  <img src="https://github.com/truespring/pikaplay/blob/main/PCria/PCria%20food2.jpg?raw=true" width="200px" height="200px"></img>
- <img src="https://github.com/truespring/pikaplay/blob/main/PCria/PCria%20food2.jpg?raw=true" width="200px" height="200px"></img>
- <br>
+ <img src="https://github.com/truespring/pikaplay/blob/main/PCria/PCria%20food2.jpg?raw=true" width="200px" height="200px"></img> <br>
+ 
  * 프로필 변경<br>
  <img src="https://github.com/truespring/pikaplay/blob/main/PCria/PCria%20profile.jpg?raw=true" width="200px" height="200px"></img>
  <img src="https://github.com/truespring/pikaplay/blob/main/PCria/PCria%20profile1.jpg?raw=true" width="200px" height="200px"></img>
