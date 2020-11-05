@@ -142,15 +142,31 @@
 	      }
 	      if(frm.u_name.value.length > 0){
 	    	  if(frm.u_name.value.length > 6){
-	    		  alert('이름을 5글자 이하로 설정해주세요.')
+	    		  alert('이름을 6글자 이하로 설정해주세요.')
 	    		  frm.u_name.value = origin_name
 	    		  return false
+	    	  }
+	      }
+	      if(frm.u_birth.value.length > 0){
+	    	  if(frm.u_birth.value.length <= 10){
+	    		  if(birthday(frm.u_birth.value) == false){
+		    		  return false
+	    		  }
 	    	  }
 	      }
 	      frm.submit();
 		}
 		function numberWithCommas(x) {
 		    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}
+		function birthday(birth){
+			var format = /^(19[0-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
+			if(format.test(birth)){
+				return true
+			}else{
+				alert("생년월일을 다시 입력해주세요.");
+				return false
+			}
 		}
 	</script>
 </div>
