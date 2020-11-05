@@ -52,10 +52,10 @@
 		break
 		}
 		if(goout) {
-			sessionStorage.removeItem('timeset')
-			sessionStorage.removeItem('count')
-			sessionStorage.clear()
-			if(sessionStorage.getItem('timeset') != null) {
+			localStorage.removeItem('timeset')
+			localStorage.removeItem('count')
+			localStorage.clear()
+			if(localStorage.getItem('timeset') != null) {
 				alert('다시 시도해주세요.')
 				return false
 			}
@@ -66,11 +66,11 @@
 	
     // 세션에 시간 흐르게 하는 함수 - 시작
     function session() {
-    	if(sessionStorage.getItem('timeset') != null) {
-            sessionStorage.setItem('timeset', sessionStorage.getItem('timeset') - 1000);
-            sessionStorage.setItem('count', sessionStorage.getItem('count') - 1);
-	    	console.log('session time : ' + sessionStorage.getItem('timeset'))
-	    	console.log('session count : ' + sessionStorage.getItem('count'))
+    	if(localStorage.getItem('timeset') != null) {
+            localStorage.setItem('timeset', localStorage.getItem('timeset') - 1000);
+            localStorage.setItem('count', localStorage.getItem('count') - 1);
+	    	console.log('session time : ' + localStorage.getItem('timeset'))
+	    	console.log('session count : ' + localStorage.getItem('count'))
 	    	disc_time()
     	}
     }
@@ -84,8 +84,8 @@
     // 여기까지 함수 - 끝
      
     function disc_time() {
-    	if(sessionStorage.getItem('count') % 60 == 0) {
-    		console.log(sessionStorage.getItem('count'))
+    	if(localStorage.getItem('count') % 60 == 0) {
+    		console.log(localStorage.getItem('count'))
     		axios.post('/count/ajaxDiscTime', {
     			u_time: 100
     		}).then(function(res) {
