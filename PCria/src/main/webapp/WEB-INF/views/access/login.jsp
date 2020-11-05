@@ -8,10 +8,10 @@
 	<link rel="stylesheet" type="text/css" href="/res/css/${css}.css">
 </head>
 <body>
+	<div id="container">
 	<div class="wrap">
-		<div class="logo_img">
-			<div class="background"></div>
-		</div>
+		<div class="logo_img"></div>
+		<div class="background"></div>
 		<div class="form-wrap">
 	        <div class="button-wrap">
 	            <div id="btn"></div>
@@ -39,6 +39,7 @@
 	            </div>
 	        </form>
 	    </div>
+	</div>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script>
@@ -94,20 +95,17 @@
         var x = document.getElementById("login");
         var y = document.getElementById("register");
         var z = document.getElementById("btn");
-
         function login(){
             x.style.left = "50px";
             y.style.left = "450px";
             z.style.left = "0";
         }
-
         function register(){
             x.style.left = "-400px";
             y.style.left = "43px";
             z.style.left = "110px";
         }
         // 회원 가입 부분 - 끝
-
         
 		sessionStorage.removeItem('timeset')
 		sessionStorage.removeItem('count')
