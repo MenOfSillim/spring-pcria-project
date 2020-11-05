@@ -44,7 +44,7 @@
 	function logout(root) {
 		var goout = false
 		switch(root) {
-		case 1: goout = confirm('사용종료 하시겠습니까?')
+		case 1: goout = confirm('로그아웃 하시겠습니까?')
 		break
 		case 2: goout = true
 		break
