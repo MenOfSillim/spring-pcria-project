@@ -44,16 +44,18 @@
 	function logout(root) {
 		var goout = false
 		switch(root) {
-		case 1: goout = confirm('로그아웃 하시겠습니까?')
+		case 1:
+			goout = confirm('사용종료 하시겠습니까?')
 		break
-		case 2: goout = true
+		case 2:
+			goout = true
 		break
 		}
 		if(goout) {
-			localStorage.removeItem('timeset')
-			localStorage.removeItem('count')
-			localStorage.clear()
-			if(localStorage.getItem('timeset') != null) {
+			sessionStorage.removeItem('timeset')
+			sessionStorage.removeItem('count')
+			sessionStorage.clear()
+			if(sessionStorage.getItem('timeset') != null) {
 				alert('다시 시도해주세요.')
 				return false
 			}
@@ -61,15 +63,14 @@
 		}
 		return false
 	}
-
 	
     // 세션에 시간 흐르게 하는 함수 - 시작
     function session() {
-    	if(localStorage.getItem('timeset') != null) {
-            localStorage.setItem('timeset', localStorage.getItem('timeset') - 1000);
-            localStorage.setItem('count', localStorage.getItem('count') - 1);
-	    	console.log('session time : ' + localStorage.getItem('timeset'))
-	    	console.log('session count : ' + localStorage.getItem('count'))
+    	if(sessionStorage.getItem('timeset') != null) {
+            sessionStorage.setItem('timeset', sessionStorage.getItem('timeset') - 1000);
+            sessionStorage.setItem('count', sessionStorage.getItem('count') - 1);
+	    	console.log('session time : ' + sessionStorage.getItem('timeset'))
+	    	console.log('session count : ' + sessionStorage.getItem('count'))
 	    	disc_time()
     	}
     }
@@ -83,8 +84,8 @@
     // 여기까지 함수 - 끝
      
     function disc_time() {
-    	if(localStorage.getItem('count') % 60 == 0) {
-    		console.log(localStorage.getItem('count'))
+    	if(sessionStorage.getItem('count') % 60 == 0) {
+    		console.log(sessionStorage.getItem('count'))
     		axios.post('/count/ajaxDiscTime', {
     			u_time: 100
     		}).then(function(res) {
@@ -111,7 +112,6 @@
     		})
     	}
     }
-
     function others_time(other_time) {
     	var otherArr = other_time.split(':')
     	return `\${otherArr[0]}:\${otherArr[1]}`
