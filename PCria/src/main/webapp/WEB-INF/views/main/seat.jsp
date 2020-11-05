@@ -221,10 +221,10 @@
 	}
 
     function time_count() {
-    	if(sessionStorage.getItem('otherCount') == null) {
-	    	sessionStorage.setItem('otherCount', -1)    		
+    	if(localStorage.getItem('otherCount') == null) {
+	    	localStorage.setItem('otherCount', -1)    		
     	} else {
-    		sessionStorage.setItem('otherCount', sessionStorage.getItem('otherCount') - 1)
+    		localStorage.setItem('otherCount', localStorage.getItem('otherCount') - 1)
     	}
 		seatsContainer.innerText = ''
     	ajaxSelListSeat(alphabetArr)
@@ -235,7 +235,7 @@
     
     function Start_other_timer() {
     	time_count()
-    	other_timer = setInterval(time_count, 60000)
+    	other_timer = setInterval(time_count, 20000)
     }
     Start_other_timer()
 
@@ -251,9 +251,9 @@
         function showRemaining() { 
             var now = new Date(); 
             var distDt = _vDate - now;
-            if(sessionStorage.getItem('timeset') == null) {
-	            sessionStorage.setItem('timeset', distDt); // 세션에 초기 시간 삽입
-	            sessionStorage.setItem('count', i); // 세션에 초기 시간 삽입            	
+            if(localStorage.getItem('timeset') == null) {
+	            localStorage.setItem('timeset', distDt); // 세션에 초기 시간 삽입
+	            localStorage.setItem('count', i); // 세션에 초기 시간 삽입            	
             }
             if (distDt < 0) { 
                 clearInterval(timer); 
