@@ -376,7 +376,7 @@ ul.contact li a.icon-rss:before
 #section
 {
 	background-color:white;
-	width: 1600px;
+	width: 1400px;
 	margin:0 auto;
 	flex-grow: 1;
 	overflow: auto;
@@ -409,10 +409,12 @@ ul.contact li a.icon-rss:before
 
 #logo
 {
-	position: absolute;
-	top: 2em;
-	left: 0;
-	margin-left: 100px;
+    position: absolute;
+    top: 0em;
+    left: 30px;
+    margin-left: 100px;
+    width: 180px;
+    height: 90px;
 }
 
 #logo h1
@@ -424,9 +426,16 @@ ul.contact li a.icon-rss:before
 	padding-right: 0.50em;
 }
 #logo a
-{
+{	
+	width : 100%;
+	height : 100%;
+	display: inline-block;
 	text-decoration: none;
 	color: #2C383B;
+}
+#logo a img{
+	width: 100%;
+	height: 100%;
 }
 
 /*********************************************************************************/

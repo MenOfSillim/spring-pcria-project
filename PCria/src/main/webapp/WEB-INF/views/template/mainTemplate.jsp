@@ -16,7 +16,9 @@
 <div id="header-wrapper">
 	<div id="header" class="container">
 		<div id="logo">
-			<h1><a href="/main/seat">🎮🕹PCria</a></h1>
+			<a href="/main/seat">
+				<img alt="logo" src="/res/img/login/PCria_logo.png">
+			</a>
 		</div>
 		<div id="menu">
 			<ul>
