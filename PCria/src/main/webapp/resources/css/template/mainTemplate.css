@@ -365,6 +365,10 @@ ul.contact li a.icon-rss:before
 	width: 100%;
 	height: 100%;
 }
+#headerContainer{
+	width: 1200px;
+	margin: 0 auto;
+}
 #header-wrapper
 {
 	display:flex;
@@ -389,8 +393,13 @@ ul.contact li a.icon-rss:before
 {
 	position: relative;
 	height: 100px;
-	width: 1400px;
+	width: 1200px;
     margin: 0 auto;
+}
+#footerContainer{
+	width: 100%;
+	margin: 0 auto;
+	background: #1B9772;
 }
 #footer-wrapper
 {
@@ -399,7 +408,7 @@ ul.contact li a.icon-rss:before
 	overflow: hidden;
 	background: #1B9772;
 	text-align: center;
-	width: 100%;
+	width: 1200px;;
 }
 
 
