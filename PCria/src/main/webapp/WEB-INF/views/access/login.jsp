@@ -8,8 +8,11 @@
 	<link rel="stylesheet" type="text/css" href="/res/css/${css}.css">
 </head>
 <body>
+	<div id="container">
 	<div class="wrap">
-	    <div class="form-wrap">
+		<div class="logo_img"></div>
+		<div class="background"></div>
+		<div class="form-wrap">
 	        <div class="button-wrap">
 	            <div id="btn"></div>
 	            <button type="button" class="togglebtn" onclick="login()">로그인</button>
@@ -36,6 +39,7 @@
 	            </div>
 	        </form>
 	    </div>
+	</div>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script>
@@ -91,13 +95,11 @@
         var x = document.getElementById("login");
         var y = document.getElementById("register");
         var z = document.getElementById("btn");
-
         function login(){
             x.style.left = "50px";
             y.style.left = "450px";
             z.style.left = "0";
         }
-
         function register(){
             x.style.left = "-400px";
             y.style.left = "43px";
@@ -105,7 +107,9 @@
         }
         // 회원 가입 부분 - 끝
         
-        // 로그인 부분 - 시작
+		sessionStorage.removeItem('timeset')
+		sessionStorage.removeItem('count')
+		sessionStorage.clear()
     </script>
 </body>
 </html>

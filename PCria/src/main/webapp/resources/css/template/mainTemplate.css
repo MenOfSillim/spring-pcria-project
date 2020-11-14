@@ -370,6 +370,7 @@ ul.contact li a.icon-rss:before
 	display:flex;
 	background: #FFF;
 	border-bottom: 1px solid #EAEAEA;
+	width: 100%;
 	margin: 0 auto; 
 }
 #section
@@ -388,7 +389,7 @@ ul.contact li a.icon-rss:before
 {
 	position: relative;
 	height: 100px;
-	width: 1600px;
+	width: 1400px;
     margin: 0 auto;
 }
 #footer-wrapper
@@ -398,6 +399,7 @@ ul.contact li a.icon-rss:before
 	overflow: hidden;
 	background: #1B9772;
 	text-align: center;
+	width: 100%;
 }
 
 
@@ -610,7 +612,7 @@ ul.contact li a.icon-rss:before
 #copyright
 {
 	background-color:#1B9772;
-	width:1600px;
+	width:1400px;
 	margin: 0 auto;
 	overflow: hidden;
 	padding: 20px 0;
@@ -623,6 +625,8 @@ ul.contact li a.icon-rss:before
 	font-size: 1.1em;
 	margin-bottom: 0px;
 	color: rgba(255,255,255,0.3);
+	width: 1300px;
+    margin: 0 auto;
 }
 
 #copyright a

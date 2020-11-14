@@ -8,6 +8,9 @@ public class FoodVO {
 	private String f_name;
 	private int chk;
 	
+	//프로필 정보 관련 조회 
+	private int total_quantity;
+	
 	public int getChk() {
 		return chk;
 	}
@@ -43,5 +46,11 @@ public class FoodVO {
 	}
 	public void setF_name(String f_name) {
 		this.f_name = f_name;
+	}
+	public int getTotal_quantity() {
+		return total_quantity;
+	}
+	public void setTotal_quantity(int total_quantity) {
+		this.total_quantity = total_quantity;
 	}
 }

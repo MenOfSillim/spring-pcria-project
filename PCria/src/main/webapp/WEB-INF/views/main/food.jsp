@@ -98,7 +98,7 @@
 		}
 	}
 	function ajaxCntFood(totalPayment, countingList, food_request) {
-		axios.post('/main/foodAjax',{
+		axios.post('/count/foodAjax',{
 			totalPayment : totalPayment,
 			countingList : countingList,
 			food_request : food_request
@@ -112,7 +112,7 @@
 				appendPayment(0)
 				//location.reload()
 			}else{
-				alert('계산 실패했습니다.')
+				alert('잔액이 부족합니다.')
 			}
 		})
 	}
@@ -124,6 +124,7 @@
 		var current_id = document.getElementById(chk_id) 
 		current_id.classList.add('food_page_item')
 		var chk = chk_id.substring(4)
+		console.log(`chk : \${chk}`)
 		ajaxSelMenuList(chk)
 	}
 	//계산금액 갱신해주는 함수
@@ -315,7 +316,4 @@
 		n = parseInt(str.replace(/,/g,""));
 		return n;
 	}
-
-
-
 </script>

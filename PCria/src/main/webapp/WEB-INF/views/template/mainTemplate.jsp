@@ -24,7 +24,7 @@
 				<li id="usageTime"><a href="/main/usageTime" accesskey="2" title="시간 예약">시간 예약</a></li>
 				<li id="foodOrder"><a href="/main/food" accesskey="3" title="메뉴 예약">먹거리 주문</a></li>
 				<li id="profile"><a href="/main/profile" accesskey="4" title="프로필">프로필</a></li>
-				<li id="myPage"><a href="javascript:logout()" >사용종료</a></li>
+				<li id="myPage"><a href="javascript:logout(1)" >사용종료</a></li>
 			</ul>
 		</div>
 	</div>
@@ -41,11 +41,80 @@
 	var menu_id = ${menu_id}
 	menu_id.classList.add('current_page_item')
 	
-	function logout() {
-		if(confirm('로그아웃 하시겠습니까?')) {
+	function logout(root) {
+		var goout = false
+		switch(root) {
+		case 1:
+			goout = confirm('사용종료 하시겠습니까?')
+		break
+		case 2:
+			goout = true
+		break
+		}
+		if(goout) {
+			localStorage.removeItem('timeset')
+			localStorage.removeItem('count')
+			localStorage.clear()
+			if(localStorage.getItem('timeset') != null) {
+				alert('다시 시도해주세요.')
+				return false
+			}
 			location.href = '/access/logout'
 		}
 		return false
 	}
+	
+    // 세션에 시간 흐르게 하는 함수 - 시작
+    function session() {
+    	if(localStorage.getItem('timeset') != null) {
+            localStorage.setItem('timeset', localStorage.getItem('timeset') - 1000);
+            localStorage.setItem('count', localStorage.getItem('count') - 1);
+	    	console.log('session time : ' + localStorage.getItem('timeset'))
+	    	console.log('session count : ' + localStorage.getItem('count'))
+	    	disc_time()
+    	}
+    }
+    var timerId = null
+    
+    function Start_timer() {
+    	session()
+	    timerId = setInterval(session, 1000)
+    }
+    Start_timer()
+    // 여기까지 함수 - 끝
+     
+    function disc_time() {
+    	if(localStorage.getItem('count') % 60 == 0) {
+    		console.log(localStorage.getItem('count'))
+    		axios.post('/count/ajaxDiscTime', {
+    			u_time: 100
+    		}).then(function(res) {
+    			console.log('로그아웃 테스트 : ' + res.data)
+    			if(res.data == '00:00:00') {
+    				logout(2)
+    				return false
+    			}
+    			var time = document.getElementById('span_time')
+    			if(time != null) {
+    				time.innerText = ''
+    				time.innerText = others_time(res.data)    				
+    			}
+				var myBtn = document.querySelector('.btnMySelSeat')
+				if(myBtn != null) {
+					myBtn.removeChild(myBtn.lastChild)
+					var myU_time = res.data
+					var time_div = document.createElement('div')
+					time_div.innerText = ''
+					time_div.innerText = others_time(myU_time)
+					
+					myBtn.append(time_div)										
+				}
+    		})
+    	}
+    }
+    function others_time(other_time) {
+    	var otherArr = other_time.split(':')
+    	return `\${otherArr[0]}:\${otherArr[1]}`
+    }
 </script>
 </html>

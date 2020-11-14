@@ -1,6 +1,6 @@
 package com.pcria.access;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +36,7 @@ public class AccessService {
 		param.setU_wallet(dbUser.getU_wallet());
 		param.setU_birth(dbUser.getU_birth());
 		param.setU_time(dbUser.getU_time());
+		param.setU_profile(dbUser.getU_profile());
 		return Const.SUCCESS;
 	}
 	
@@ -50,12 +51,12 @@ public class AccessService {
 		return mapper.insUser(param);
 	}
 	
-	public AccessVO userInfo(AccessVO param, HttpServletRequest req) {
-		int u_no = SecurityUtils.getLoginUserPk(req);
+	public AccessVO userInfo(AccessVO param, HttpSession hs) {
+		int u_no = SecurityUtils.getLoginUserPk(hs);
 		param.setU_no(u_no);
 		
 		AccessVO data = mapper.selUser(param);
-		
+		data.setU_password(null);
 		return data;
 	}
 }

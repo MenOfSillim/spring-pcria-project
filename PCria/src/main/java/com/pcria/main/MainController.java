@@ -12,14 +12,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.oreilly.servlet.MultipartRequest;
 import com.pcria.Const;
 import com.pcria.SecurityUtils;
 import com.pcria.access.AccessService;
 import com.pcria.access.model.AccessVO;
-import com.pcria.main.model.CountingDMI;
+import com.pcria.counting.model.CountingDMI;
 import com.pcria.main.model.FoodVO;
-import com.pcria.main.model.SeatDMI;
+import com.pcria.main.model.SeatDMI;import com.sun.org.apache.xpath.internal.operations.Mod;
 
 @Controller
 @RequestMapping("/main")
@@ -32,8 +35,9 @@ public class MainController {
 	private AccessService accService;
 	
 	@RequestMapping(value = "/seat", method = RequestMethod.GET)
-	public String seat(Model model) {
+	public String seat(Model model, HttpSession hs, AccessVO param) {
 		
+		model.addAttribute("data", accService.userInfo(param, hs));
 		model.addAttribute(Const.MENU_ID, "seat");
 		model.addAttribute(Const.VIEW, "main/seat");
 		model.addAttribute(Const.CSS, "main/seat");
@@ -41,9 +45,9 @@ public class MainController {
 		return "/template/mainTemplate";
 	}
 	@RequestMapping(value = "/usageTime", method = RequestMethod.GET)
-	public String usageTime(Model model, HttpServletRequest req, AccessVO param) {
+	public String usageTime(Model model, HttpSession hs, AccessVO param) {
 		
-		model.addAttribute("data", accService.userInfo(param, req));
+		model.addAttribute("data", accService.userInfo(param, hs));
 		model.addAttribute(Const.MENU_ID, "usageTime");
 		model.addAttribute(Const.VIEW, "main/usageTime");
 		model.addAttribute(Const.CSS, "main/usageTime");
@@ -64,20 +68,7 @@ public class MainController {
 	public @ResponseBody List<FoodVO> foodAjax(FoodVO param, HttpSession hs) {
 		return service.selFoodList(param);
 	}
-	@RequestMapping(value = "/foodAjax", method = RequestMethod.POST)
-	public @ResponseBody int foodAjax(@RequestBody CountingDMI param) {
-		System.out.println("총 계산 금액 : "+param.getTotalPayment());
-		System.out.println("요청 사항 : "+param.getFood_request());
-		for (int j = 0; j < param.getCountingList().size(); j++) {
-			System.out.print("seq : "+param.getCountingList().get(j).getSeq()+",");
-			System.out.print("i_f : "+param.getCountingList().get(j).getI_f()+",");
-			System.out.print("f_name : "+param.getCountingList().get(j).getF_name()+",");
-			System.out.print("total_quantity : "+param.getCountingList().get(j).getTotal_quantity()+",");
-			System.out.print("total_price : "+param.getCountingList().get(j).getTotal_price());
-			System.out.println();
-		}
-		return 1;
-	}
+	
 	@RequestMapping(value = "/ajaxSelSeat", method = RequestMethod.GET, produces = "application/json; charset=utf8")
 	public @ResponseBody SeatDMI ajaxSelSeat(HttpSession hs) {
 		SeatDMI seatDMI = new SeatDMI();
@@ -103,31 +94,40 @@ public class MainController {
 		if(param.getMyUpdInsChk() == 1) {
 			loginUser.setMyUpdInsChk(1);
 			service.updSeat(param);
-			return 2;
+			return 1;
 		}else if(param.getMyUpdInsChk() == 0){
 			service.insSeat(param);
 			loginUser.setMyUpdInsChk(1);
-			return 1;
+			return 2;
 		}else {
 			return 3;
 		}
 	}
+	//프로필 처음 입장 시 등록일자, 수정일자, 사용금액 등 가져오기
+	@RequestMapping(value = "/ajaxSelMyInfo", method = RequestMethod.GET, produces = "application/json; charset=utf8")
+	public @ResponseBody AccessVO ajaxSelMyInfo(HttpSession hs) {
+		return service.ajaxSelMyInfo(SecurityUtils.getLoginUserPk(hs));
+	}
+	//프로필 처음 입장 시 현재까지 주문 내역 가져오기 
+	@RequestMapping(value = "/ajaxSelMyOrderList", method = RequestMethod.GET, produces = "application/json; charset=utf8")
+	public @ResponseBody List<FoodVO> ajaxSelMyOrderList(HttpSession hs) {
+		return service.ajaxSelMyOrderList(SecurityUtils.getLoginUserPk(hs));
+	}
+	
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
 	public String profile(Model model) {
 		
 		model.addAttribute(Const.MENU_ID, "profile");
 		model.addAttribute(Const.VIEW, "main/profile");
-		model.addAttribute(Const.CSS, "main/seat");
+		model.addAttribute(Const.CSS, "main/profile");
 		
 		return "/template/mainTemplate";
 	}
-	@RequestMapping(value = "/myPage", method = RequestMethod.GET)
-	public String myPage(Model model) {
-		
-		model.addAttribute(Const.MENU_ID, "myPage");
-		model.addAttribute(Const.VIEW, "main/myPage");
-		model.addAttribute(Const.CSS, "main/seat");
-		
-		return "/template/mainTemplate";
+	
+	@RequestMapping(value = "/profile", method = RequestMethod.POST)
+	public String profile(MultipartHttpServletRequest mreq, AccessVO param ,HttpSession hs, RedirectAttributes ra) {
+		ra.addFlashAttribute("result", service.updProfile(mreq, param, hs));
+		return "redirect:/main/profile";
+
 	}
 }
