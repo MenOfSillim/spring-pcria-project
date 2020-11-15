@@ -2,9 +2,14 @@
 
 #section {
 	height: 100%;
+	width: 100%;
 	background-color: #F8F8F8;
 }
-
+@media screen and (max-width: 1200px){
+	#section{
+		width: 1200px;
+	}
+}
 #allContainer {
 	width: 1200px;
 	height: 100%;
@@ -13,7 +18,9 @@
 	margin: 0 auto;
 	position: relative;
 }
-
+#profileContainer{
+	width: 1200px;
+}
 #allContainer h1 {
 	margin: 40px auto;
 	margin-bottom: 30px;
