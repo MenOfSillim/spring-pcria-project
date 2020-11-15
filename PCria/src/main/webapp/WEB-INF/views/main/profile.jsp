@@ -9,7 +9,7 @@
 	<div id="leftContainer">
 		<div class="printImage">
 			<c:choose>
-				<c:when test="${loginUser.u_profile eq '' || loginUser.u_profile eq null}">
+				<c:when test="${loginUser.u_profile == '' || loginUser.u_profile == null}">
 					<img class="profileImg" src="/res/img/login/default_image.jpg" alt="프로필 설정 가기">
 				</c:when>
 				<c:otherwise>

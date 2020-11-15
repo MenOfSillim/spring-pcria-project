@@ -60,6 +60,7 @@ public class AccessController {
 				System.out.println("좌석 사용 여부 : "+vo.getS_occupied());
 			}
 			hs.setAttribute(Const.LOGIN_USER, param);
+			System.out.println(param.getU_profile());
 			AccessVO loginUser = SecurityUtils.getLoginUser(hs);
 			System.out.println("잔여 시간 : " + loginUser.getU_time());
 			return "redirect:/main/seat";
