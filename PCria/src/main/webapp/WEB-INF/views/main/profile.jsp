@@ -4,11 +4,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <div id="allContainer">
+	<div id="profileContainer">
 	<h1>${loginUser.u_name}님 프로필</h1>
 	<div id="leftContainer">
 		<div class="printImage">
 			<c:choose>
-				<c:when test="${loginUser.u_profile eq '' || loginUser.u_profile eq null}">
+				<c:when test="${loginUser.u_profile == '' || loginUser.u_profile == null}">
 					<img class="profileImg" src="/res/img/login/default_image.jpg" alt="프로필 설정 가기">
 				</c:when>
 				<c:otherwise>
@@ -71,6 +72,7 @@
 		</div>
 		<h3>나의 주문 목록</h3>
 		<div id="myOrderList"></div>
+	</div>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script type="text/javascript">

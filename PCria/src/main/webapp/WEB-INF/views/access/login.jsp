@@ -10,7 +10,7 @@
 <body>
 	<div id="container">
 	<div class="wrap">
-		<div class="logo_img"></div>
+		<div class="logo_img"><img alt="logo" src="/res/img/login/PCria_logo.png"></div>
 		<div class="background"></div>
 		<div class="form-wrap">
 	        <div class="button-wrap">

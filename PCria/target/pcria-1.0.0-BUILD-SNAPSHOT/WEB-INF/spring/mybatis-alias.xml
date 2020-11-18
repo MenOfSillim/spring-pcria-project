@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+ 		<typeAlias type="com.pcria.main.model.FoodVO" alias="FoodVO"/>
+ 		<typeAlias type="com.pcria.main.model.SeatVO" alias="SeatVO"/>
+ 		<typeAlias type="com.pcria.main.model.SeatDMI" alias="SeatDMI"/>
+ 		
+ 		<typeAlias type="com.pcria.access.model.AccessVO" alias="AccessVO"/>
+ 		
+ 		<typeAlias type="com.pcria.counting.model.CountingVO" alias="CountingVO"/>
+ 		<typeAlias type="com.pcria.counting.model.CountingDMI" alias="CountingDMI"/>
+	</typeAliases>
+</configuration>
