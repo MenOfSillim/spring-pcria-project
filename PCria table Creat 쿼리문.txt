@@ -48,6 +48,11 @@ create table user_food(
  foreign key (seq) references t_food(seq)
  );
 
+create table s_code_d(
+	s_no int auto_increment primary key,
+	s_val varchar(30) not null
+);
+
 CREATE TABLE t_seat(
    u_no INT,
    s_no INT,
